@@ -1,8 +1,8 @@
 import React from 'react';
 import { GoogleLogout } from 'react-google-login';
+require('dotenv').config();
 
-
-const googleClientId = process.env.googleClientId;
+const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function Logout() {
     const onSuccess = () => {
@@ -12,7 +12,7 @@ function Logout() {
     return (
         <div>
             <GoogleLogout
-            clientId = {googleClientId}
+            clientId = {clientId}
             buttonText="Logout"
             onLogoutSuccess={onSuccess}
             ></GoogleLogout>       

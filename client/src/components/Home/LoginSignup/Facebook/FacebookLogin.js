@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { Card, Image } from 'react-bootstrap';
 
-function App() {
+function Login() {
 
   const [login, setLogin] = useState(false);
   const [data, setData] = useState({});
@@ -49,4 +49,4 @@ function App() {
   );
 }
 
-export default App;
+export default Login;
