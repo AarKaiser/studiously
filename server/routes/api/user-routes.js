@@ -1,0 +1,20 @@
+const router = require('express').Router();
+const {
+  createUser,
+  getSingleUser,
+  saveGoal,
+  deleteGoal,
+  login,
+} = require('../../controllers/user-controller');
+
+// import middleware
+const { authMiddleware } = require('../../utils/auth');
+
+// put authMiddleware anywhere we need to send a token for verification of user
+router.route('/').post(createUser).put(authMiddleware, saveGoal);
+
+router.route('/login').post(login);
+
+router.route('/goals/:goalId').delete(authMiddleware, deleteGoal);
+
+module.exports = router;
