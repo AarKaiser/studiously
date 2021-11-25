@@ -1,4 +1,9 @@
-body {
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body {
   font-family: 'Rubik', sans-serif;
 }
 
@@ -14,4 +19,4 @@ h6 {
 .small {
   font-weight: 300;
   font-style: italic;
-}
+} */
