@@ -80,6 +80,7 @@ const SearchGoals = () => {
 
   return (
     <>
+
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
           <h1>Search for Goals!</h1>
@@ -92,7 +93,7 @@ const SearchGoals = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type='text'
                   size='lg'
-                  placeholder='Search for a goal'
+               
                 />
               </Col>
               <Col xs={12} md={4}>
@@ -141,5 +142,7 @@ const SearchGoals = () => {
     </>
   );
 };
+
+
 
 export default SearchGoals;
