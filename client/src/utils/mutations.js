@@ -24,7 +24,7 @@ mutation addUser($username: String!, $email: String!, $password: String!){
 }
 `;
 
-export const SAVE_BOOK = gql`
+export const SAVE_GOAL = gql`
 mutation saveGoal($goalData: goalInput!){
     saveGoal(goalData: $goalData) {
         _id
@@ -42,7 +42,7 @@ mutation saveGoal($goalData: goalInput!){
 }
 `;
 
-export const REMOVE_BOOK = gql`
+export const REMOVE_GOAL = gql`
 mutation removeGoal($goalId: String!){
     removeGoal(goalId: $goalId) {
         _id
