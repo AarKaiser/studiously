@@ -87,12 +87,12 @@ h6 {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .nav-link:hover {
-  @apply bg-green-900 ;
+  @apply bg-green-900 text-white;
   opacity: 0.8;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.nav-link{
-  @apply font-black
+.nav-link {
+  @apply font-medium text-white;
 }
