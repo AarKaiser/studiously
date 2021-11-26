@@ -23,16 +23,16 @@ const AppNavbar = () => {
               {/* if user is logged in show saved goals and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/dashboard">
+                  <Nav.Link as={Link} to="/dashboard" className="nav-link">
                     Dashboard
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/goals">
+                  <Nav.Link as={Link} to="/goals" className="nav-link">
                     Goals
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/schedule">
+                  <Nav.Link as={Link} to="/schedule" className="nav-link">
                     Schedule
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/dailyreview">
+                  <Nav.Link as={Link} to="/dailyreview" className="nav-link">
                     Daily Review
                   </Nav.Link>
                   <Nav.Link as={Link} to="/timer">
