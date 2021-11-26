@@ -21,28 +21,19 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="ml-auto">
-              {/* <Nav.Link as={Link} to="/dashboard">
-                Dashboard
-              </Nav.Link>
-              <Nav.Link as={Link} to="/schedule">
-                Schedule
-              </Nav.Link> */}
+            
 
               {/* if user is logged in show saved goals and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/dashboard">
-                    Dashboard
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/saved">
-                    Today's Goals
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/schedule">
-                    Schedule
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dailyreview">
-                    Daily Review
-                  </Nav.Link>
+
+                  <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+                  <Nav.Link as={Link} to="/saved">Today's Goals</Nav.Link>
+                  <Nav.Link as={Link} to="/schedule">Schedule</Nav.Link>
+                  <Nav.Link as={Link} to="/dailyreview">Daily Review</Nav.Link>
+                  <Nav.Link as={Link} to="/timer">Timer</Nav.Link>
+
+
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (

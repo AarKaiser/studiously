@@ -20,6 +20,7 @@ h6 {
   font-weight: 300;
   font-style: italic;
 } */
+
 .btn-create-goals {
   @apply bg-gray-600 hover:text-white hover:bg-green-700  hover:no-underline text-white font-bold py-14 px-28 rounded bottom-1 mt-20;
 }
@@ -29,5 +30,6 @@ h6 {
 }
 
 .navbar-style {
+
   @apply bg-green-700;
 }
