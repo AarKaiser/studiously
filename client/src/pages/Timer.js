@@ -62,14 +62,14 @@ const SavedGoals = () => {
 
   // if data isn't here yet, say so
   if (!userDataLength) {
-    return <h2>This is the dashboard. This is for goal data</h2>;
+    return <h2>Timer. Countdown goes here</h2>;
   }
 
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Dashboard</h1>
+          <h1>Timer</h1>
         </Container>
       </Jumbotron>
       <Container>

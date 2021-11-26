@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import {
+  Jumbotron,
+  Container,
+  Col,
+  Form,
+  Button,
+  Card,
+  CardColumns,
+} from "react-bootstrap";
 
-import Auth from '../utils/auth';
-import { saveGoal, searchGoogleGoals } from '../utils/API';
-import { saveGoalIds, getSavedGoalIds } from '../utils/localStorage';
+import Auth from "../utils/auth";
+import { saveGoal, searchGoogleGoals } from "../utils/API";
+import { saveGoalIds, getSavedGoalIds } from "../utils/localStorage";
+import HomeButtons from "../components/HomeButtons";
 
 const SearchGoals = () => {
   // create state for holding returned google api data
   const [searchedGoals, setSearchedGoals] = useState([]);
   // create state for holding our search field data
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
 
   // create state to hold saved goalId values
   const [savedGoalIds, setSavedGoalIds] = useState(getSavedGoalIds());
@@ -32,21 +41,21 @@ const SearchGoals = () => {
       const response = await searchGoogleGoals(searchInput);
 
       if (!response.ok) {
-        throw new Error('something went wrong!');
+        throw new Error("something went wrong!");
       }
 
       const { items } = await response.json();
 
       const goalData = items.map((goal) => ({
         goalId: goal.id,
-        authors: goal.volumeInfo.authors || ['No author to display'],
+        authors: goal.volumeInfo.authors || ["No author to display"],
         title: goal.volumeInfo.title,
         description: goal.volumeInfo.description,
-        image: goal.volumeInfo.imageLinks?.thumbnail || '',
+        image: goal.volumeInfo.imageLinks?.thumbnail || "",
       }));
 
       setSearchedGoals(goalData);
-      setSearchInput('');
+      setSearchInput("");
     } catch (err) {
       console.error(err);
     }
@@ -68,7 +77,7 @@ const SearchGoals = () => {
       const response = await saveGoal(goalToSave, token);
 
       if (!response.ok) {
-        throw new Error('something went wrong!');
+        throw new Error("something went wrong!");
       }
 
       // if goal successfully saves to user's account, save goal id to state
@@ -80,56 +89,46 @@ const SearchGoals = () => {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
+      <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Search for Goals!</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
-                <Form.Control
-                  name='searchInput'
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type='text'
-                  size='lg'
-                  placeholder='Search for a goal'
-                />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
-                  Submit Search
-                </Button>
-              </Col>
-            </Form.Row>
-          </Form>
+          <h1>HomePage</h1>
         </Container>
       </Jumbotron>
 
       <Container>
-        <h2>
+        {/* <h2>
           {searchedGoals.length
             ? `Viewing ${searchedGoals.length} results:`
-            : 'Search for a goal to begin'}
-        </h2>
+            : "Search for a goal to begin"}
+        </h2> */}
         <CardColumns>
           {searchedGoals.map((goal) => {
             return (
-              <Card key={goal.goalId} border='dark'>
+              <Card key={goal.goalId} border="dark">
                 {goal.image ? (
-                  <Card.Img src={goal.image} alt={`The cover for ${goal.title}`} variant='top' />
+                  <Card.Img
+                    src={goal.image}
+                    alt={`The cover for ${goal.title}`}
+                    variant="top"
+                  />
                 ) : null}
                 <Card.Body>
                   <Card.Title>{goal.title}</Card.Title>
-                  <p className='small'>Authors: {goal.authors}</p>
+                  <p className="small">Authors: {goal.authors}</p>
                   <Card.Text>{goal.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
-                      disabled={savedGoalIds?.some((savedGoalId) => savedGoalId === goal.goalId)}
-                      className='btn-block btn-info'
-                      onClick={() => handleSaveGoal(goal.goalId)}>
-                      {savedGoalIds?.some((savedGoalId) => savedGoalId === goal.goalId)
-                        ? 'This goal has already been saved!'
-                        : 'Save this Goal!'}
+                      disabled={savedGoalIds?.some(
+                        (savedGoalId) => savedGoalId === goal.goalId
+                      )}
+                      className="btn-block btn-info"
+                      onClick={() => handleSaveGoal(goal.goalId)}
+                    >
+                      {savedGoalIds?.some(
+                        (savedGoalId) => savedGoalId === goal.goalId
+                      )
+                        ? "This goal has already been saved!"
+                        : "Save this Goal!"}
                     </Button>
                   )}
                 </Card.Body>
@@ -137,6 +136,7 @@ const SearchGoals = () => {
             );
           })}
         </CardColumns>
+        <HomeButtons />
       </Container>
     </>
   );
