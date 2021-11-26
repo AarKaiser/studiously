@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ReviewButtons() {
     return (
-      <div>
+      <div className="flex justify-center space-x-10"> 
         <a href=""className="bg-gray-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded bottom-1 justify-start">
         Pause
        </a>
