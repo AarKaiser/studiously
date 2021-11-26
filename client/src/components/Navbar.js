@@ -26,8 +26,8 @@ const AppNavbar = () => {
                   <Nav.Link as={Link} to="/dashboard">
                     Dashboard
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/saved">
-                    Today's Goals
+                  <Nav.Link as={Link} to="/goals">
+                    Goals
                   </Nav.Link>
                   <Nav.Link as={Link} to="/schedule">
                     Schedule
