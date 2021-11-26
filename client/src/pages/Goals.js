@@ -1,49 +1,59 @@
 import "./Goals.css";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import "bootstrap-icons/font/bootstrap-icons.css"
-import {Doughnut} from 'react-chartjs-2'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 function Goals() {
-
   return (
-
     <div className="goals-container">
       <nav className="navbar">
-      <div className="navbar-brand">📝 Current Goals </div>
-      <div className="icons">
-        <button className="save-icon" onClick={console.log("Save Clicked")}>💾</button>
-        <button className="new-goal-icon" onClick={console.log("New Goal Clicked")}>➕</button>
-      </div>
-    </nav>
+        <div className="navbar-brand">📝 Current Goals </div>
+        <div className="icons">
+          <button className="save-icon" onClick={console.log("Save Clicked")}>
+            💾
+          </button>
+          <button
+            className="new-goal-icon"
+            onClick={console.log("New Goal Clicked")}
+          >
+            ➕
+          </button>
+        </div>
+      </nav>
       <div className="container-fluid goals-input">
-      <div className="row">
-        <div className="col-4 list-container">
-          <div className="card saved-goals">
-            <ul className="list-group"></ul>
-            <li className="list-group-item"><button className="delete-goal-btn" onClick={console.log("Delete Goal X Click")}>🗑️</button> Saved Goal 1 </li>
+        <div className="row">
+          <div className="col-4 list-container">
+            <div className="card saved-goals">
+              <ul className="list-group"></ul>
+              <li className="list-group-item">
+                <button
+                  className="delete-goal-btn"
+                  onClick={console.log("Delete Goal X Click")}
+                >
+                  🗑️
+                </button>{" "}
+                Saved Goal 1{" "}
+              </li>
+            </div>
+          </div>
+          <div className="col-8 goal-input">
+            <input
+              className="goal-title"
+              placeholder="Goal Title"
+              maxlength="28"
+              type="text"
+            />
+            <textarea
+              className="goal-textarea"
+              placeholder="Goal Description"
+            ></textarea>
           </div>
         </div>
-        <div className="col-8 goal-input">
-          <input
-            className="goal-title"
-            placeholder="Goal Title"
-            maxlength="28"
-            type="text"
-          />
-          <textarea className="goal-textarea" placeholder="Goal Description"></textarea>
-        </div>
       </div>
     </div>
-    </div>
-
   );
 }
 
 export default Goals;
-
-
-
-
 
 // import React, { useState, useEffect } from 'react';
 // import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
