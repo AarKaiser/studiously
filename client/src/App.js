@@ -9,7 +9,7 @@ import Navbar from './components/Navbar';
 
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import Button from './components/Button';
+
 
 
 const httpLink = createHttpLink({
@@ -48,7 +48,7 @@ function App() {
 
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
-       <Button/>
+       
       </>
     </Router>
     </ApolloProvider>

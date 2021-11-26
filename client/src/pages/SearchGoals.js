@@ -4,6 +4,7 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 import Auth from '../utils/auth';
 import { saveGoal, searchGoogleGoals } from '../utils/API';
 import { saveGoalIds, getSavedGoalIds } from '../utils/localStorage';
+import HomeButtons from '../components/HomeButtons';
 
 const SearchGoals = () => {
   // create state for holding returned google api data
@@ -49,7 +50,7 @@ const SearchGoals = () => {
       setSearchInput('');
     } catch (err) {
       console.error(err);
-    }
+      }
   };
 
   // create function to handle saving a goal to our database
@@ -83,26 +84,8 @@ const SearchGoals = () => {
 
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Search for Goals!</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
-                <Form.Control
-                  name='searchInput'
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type='text'
-                  size='lg'
-               
-                />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
-                  Submit Search
-                </Button>
-              </Col>
-            </Form.Row>
-          </Form>
+          <h1>HomePage</h1>
+          <HomeButtons />
         </Container>
       </Jumbotron>
 
