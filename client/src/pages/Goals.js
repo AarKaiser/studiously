@@ -57,10 +57,10 @@ function Goals(props) {
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor='name'>Name</Form.Label>
+          <Form.Label htmlFor='name'>Goal Name</Form.Label>
           <Form.Control
             type='text'
-            placeholder='name'
+            placeholder='Your goal'
             name='name'
             onChange={handleInputChange}
             value={userFormData.name}
@@ -82,12 +82,32 @@ function Goals(props) {
           <Form.Control.Feedback type='invalid'>Please give you goal a description!</Form.Control.Feedback>
         </Form.Group>
 
+        <Form.Group>
+          <Form.Label htmlFor='email'>How long do you want to spend on this goal?</Form.Label>
+          <Form.Control
+            type='timer'
+            placeholder='Timer'
+            name='timer'
+            onChange={handleInputChange}
+            value={userFormData.description}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Please give you goal a description!</Form.Control.Feedback>
+        </Form.Group>
+
         <Button
           disabled={!(userFormData.name && userFormData.description )}
           type='submit'
           variant='success'>
           Submit
         </Button>
+
+        <div className="flex justify-center space-x-10"> 
+        <a href="/timer"className="bg-gray-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded bottom-1 justify-start">
+        Start Achieving!
+       </a>     
+      </div>
+
       </Form>
 
 <container>
