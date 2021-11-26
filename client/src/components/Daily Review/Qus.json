@@ -1,0 +1,46 @@
+[
+    {
+      "id": 1,
+      "question": "Goal 1?",
+      "answers": [
+        {
+          "answerText": "Yes",
+          "value": "Yes"
+        },
+        {
+            "answerText": "No",
+            "value": "no"
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "question": "Goal 2?",
+      "answers": [
+        {
+          "answerText": "Yes",
+          "value": "Yes"
+        },
+        {
+            "answerText": "No",
+            "value": "no"
+        }
+      ]
+    },
+
+    {
+      "id": 3,
+      "question": "Goal 3?",
+      "answers": [
+        {
+          "answerText": "Yes",
+          "value": "Yes"
+        },
+        {
+            "answerText": "No",
+            "value": "no"
+        }
+      ]
+    }
+  ]
