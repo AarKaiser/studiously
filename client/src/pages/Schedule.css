@@ -2,45 +2,52 @@
     --cal1: grey;
     --cal2: black;
     --cal3: white;
+    --cal4: rgba(4, 120, 87, 10);
+  }
+
+  h1 {
+    text-align: center;
   }
 
   .schedule-container {
-    height: 95vh;
+    height: 92vh;
     background: var(--cal2);
     overflow: hidden;
+    background-image: url("../images/grassblades.jpg");
   }
   
   .calendar-container {
-    /* background-image: url("../src/images/StudiouslyLogo.jpg"); */
     margin: auto;
-    margin-top: 5vh;
+    margin-top: 3vh;
     padding-top: 5vh;
     padding-bottom: 5vh;
     padding: auto;
-    width: 75%;
-    height: 45vh;
-    background: var(--cal1);
-    border: 2px solid var(--cal2);
-    border-radius: 5px;
+    width: 75vw;
+    height: 50vh;
+    background: var(--cal4);
+    border: 1px solid var(--cal2);
+    border-radius: 35px 35px 0 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    opacity: 0.8;
   }
   
   .calgoal-container {
     /* background-image: url("../src/images/StudiouslyLogo.jpg"); */
     margin: auto;
+    margin-top: 5vh;
     margin-bottom: 5vh;
     padding: 5vh;
-    width: 90%;
-    height: 40vh;
-    background: var(--cal1);
+    width: 75vw;
+    height: 35vh;
+    background: var(--cal3);
     border: 2px solid var(--cal2);
-    border-radius: 5px;
+    border-radius: 0 0 35px 35px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 
   .react-calendar {
     margin: auto;
-    width: 700px;
+    width: 525px;
     max-width: 100%;
     background: white;
     border: 1px solid #a0a096;

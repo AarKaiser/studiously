@@ -9,6 +9,8 @@ function Cal(activeStartDate) {
   return (
     <div className="schedule-container">
       <div className="calendar-container">
+        <h1>Your Schedule</h1>
+        <br />
         <Calendar
           onChange={onChange}
           value={value}

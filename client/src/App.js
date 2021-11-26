@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import SearchGoals from './pages/SearchGoals';
+import Home from './pages/Home';
 import Goals from './pages/Goals';
 import Schedule from './pages/Schedule';
 import Dashboard from './pages/Dashboard';
@@ -40,7 +40,7 @@ function App() {
       <>
         <Navbar />
         <Switch>
-          <Route exact path='/' component={SearchGoals} />
+          <Route exact path='/' component={Home} />
           <Route exact path='/goals' component={Goals} />
           <Route exact path='/schedule' component={Schedule} />
           <Route exact path='/dashboard' component={Dashboard} />
