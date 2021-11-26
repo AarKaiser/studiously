@@ -3,7 +3,7 @@ import React from "react";
 export default function HomeButtons() {
   return (
     <div className="flex justify-center space-x-10">
-      <a href="/saved" className="btn-create-goals">
+      <a href="/goals" className="btn-create-goals">
         Create Goals
       </a>
       <a href="/schedule" className="btn-schedule">
