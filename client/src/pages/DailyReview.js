@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
-  Jumbotron,
-  Container,
-  CardColumns,
-  Card,
-  Button,
+  Container
 } from "react-bootstrap";
 import { getMe } from "../utils/API";
 import Auth from "../utils/auth";

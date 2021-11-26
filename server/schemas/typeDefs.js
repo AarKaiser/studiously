@@ -10,13 +10,10 @@ type User {
   }
 type Goal {
     _id:ID
-    authors: [String]
     description: String
     name:String
 }
 input goalInput {
-  
-    authors: [String]
     description: String
     name: String
     
@@ -32,7 +29,7 @@ type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     saveGoal(goalData: goalInput!): User
-    removeGoal(goalId: String!): User
+    removeGoal(goalId: ID!): User
 }
 `;
 

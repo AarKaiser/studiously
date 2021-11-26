@@ -24,35 +24,6 @@ mutation addUser($username: String!, $email: String!, $password: String!){
 }
 `;
 
-export const ADD_GOAL = gql`
-mutation addGoal($goalData: goalInput!){
-    addGoal(goalData: $goalData) {
-        _id
-        username
-        email 
-        addedGoal {
-            goalId
-            description
-            name
-        }
-    }
-}
-`;
-
-export const GET_GOAL = gql`
-mutation getGoal($goalData: goalInput!){
-    getGoal(goalData: $goalData) {
-        _id
-        username
-        email 
-        gotGoal {
-            goalId
-            description
-            name
-        }
-    }
-}
-`;
 
 
 export const SAVE_GOAL = gql`
@@ -62,8 +33,7 @@ mutation saveGoal($goalData: goalInput!){
         username
         email 
         savedGoals {
-            goalId
-            authors
+         	_id
             description
             name
         }
@@ -72,14 +42,13 @@ mutation saveGoal($goalData: goalInput!){
 `;
 
 export const REMOVE_GOAL = gql`
-mutation removeGoal($goalId: String!){
+mutation removeGoal($goalId: ID!){
     removeGoal(goalId: $goalId) {
         _id
         username
         email 
         savedGoals {
-            goalId
-            authors
+            _id
             description
             name
         }
