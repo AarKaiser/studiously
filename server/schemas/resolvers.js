@@ -36,7 +36,10 @@ const resolvers = {
         return { token, user };
         },
 
+
         
+
+
         saveGoal: async (parent, { goalData }, context) => {
           
             if (context.user) {
@@ -55,7 +58,7 @@ const resolvers = {
           if (context.user) {
             const updatedUser = await User.findOneAndUpdate(
               { _id: context.user._id },
-              { $pull: { savedGoals: { goalId: args.goalId } } },
+              { $pull: { savedGoals: { _id: args.goalId } } },
               { new: true }
             );
             return updatedUser
