@@ -12,7 +12,7 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar className="navbar-style" variant="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand as={Link} to="/">
             Studiously
@@ -21,12 +21,7 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="ml-auto">
-              {/* <Nav.Link as={Link} to="/dashboard">
-                Dashboard
-              </Nav.Link>
-              <Nav.Link as={Link} to="/schedule">
-                Schedule
-              </Nav.Link> */}
+            
 
               {/* if user is logged in show saved goals and logout */}
               {Auth.loggedIn() ? (
