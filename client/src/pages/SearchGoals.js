@@ -89,7 +89,7 @@ const SearchGoals = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      <Jumbotron fluid className="navbar-style">
         <Container>
           <h1>HomePage</h1>
         </Container>
