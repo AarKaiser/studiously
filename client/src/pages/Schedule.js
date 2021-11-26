@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import "./Schedule.css";
 import "../../src/index.css";
 
 function Cal(activeStartDate) {
@@ -22,7 +22,7 @@ function Cal(activeStartDate) {
           tileContent=""
         />
         <div className="calgoal-container">
-          <h1>Goals Will Show Here</h1>
+          <h1>Today's Goals</h1>
         </div>
       </div>
     </div>
