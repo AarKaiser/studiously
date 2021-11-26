@@ -29,15 +29,15 @@ h6 {
 } */
 
 .btn-create-goals {
-  @apply bg-gray-600 hover:text-white hover:bg-green-700  hover:no-underline text-white font-bold py-14 px-28 rounded bottom-1 mt-20 shadow-2xl;
+  @apply bg-green-500 hover:text-white hover:bg-green-700  hover:no-underline text-white font-bold py-14 px-28 rounded bottom-1 mt-20 shadow-2xl;
 }
 
 .btn-schedule {
-  @apply bg-gray-600 hover:text-white hover:bg-green-700 hover:no-underline text-white font-bold py-14 px-28 rounded bottom-1 mt-20 shadow-2xl;
+  @apply bg-green-500 hover:text-white hover:bg-green-700 hover:no-underline text-white font-bold py-14 px-28 rounded bottom-1 mt-20 shadow-2xl;
 }
 
 .navbar-style {
-  @apply bg-green-700;
+  @apply bg-gradient-to-r from-gray-100 via-green-400 to-green-700;
 }
 
 .banner {
