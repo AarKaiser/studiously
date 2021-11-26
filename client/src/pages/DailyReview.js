@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 import { getMe } from '../utils/API';
 import Auth from '../utils/auth';
-// import Questions from '../components/Questions';
+
+import ReviewButtons from '../components/Daily Review/ReviewButtons';
+import Questions from '../components/Daily Review/Questions';
 // import { GET_GOAL } from '../utils/mutations'
 
 const DailyReview = () => {
@@ -40,15 +42,25 @@ const DailyReview = () => {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Daily Review</h1>
-        </Container>
-      </Jumbotron>
       <Container>
+      <h1>Daily Review</h1>
+      <br />
+        <h2>Congratulations on completing a productive day</h2>
+        <br />
         <h2>Were you able to achieve your goals today?</h2>
-        
       </Container>
+      <br />
+
+      <Container>
+        
+<Questions />
+</Container>
+<br />
+
+      <Container>
+<ReviewButtons />
+        </Container>
+
     </>
   );
 };
