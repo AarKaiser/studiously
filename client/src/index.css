@@ -44,6 +44,10 @@ h6 {
   @apply rounded-2xl shadow-2xl;
 }
 
+.daily-review {
+  @apply flex justify-center;
+}
+
 .logo {
   height: 5vh;
   margin-right: 5px;
@@ -88,6 +92,7 @@ h6 {
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
 .nav-link{
   @apply font-black
 }
