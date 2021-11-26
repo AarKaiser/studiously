@@ -5,6 +5,8 @@ import SavedGoals from './pages/SavedGoals';
 import Schedule from './pages/Schedule';
 import Dashboard from './pages/Dashboard';
 import DailyReview from './pages/DailyReview';
+import Timer from './pages/Timer';
+
 import Navbar from './components/Navbar';
 
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
@@ -44,6 +46,7 @@ function App() {
           <Route exact path='/schedule' component={Schedule} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/dailyreview' component={DailyReview} />
+          <Route exact path='/timer' component={Timer} />
 
 
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
