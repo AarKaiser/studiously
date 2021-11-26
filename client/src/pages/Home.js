@@ -14,7 +14,7 @@ import { saveGoal, searchGoogleGoals } from "../utils/API";
 import { saveGoalIds, getSavedGoalIds } from "../utils/localStorage";
 import HomeButtons from "../components/HomeButtons";
 
-const SearchGoals = () => {
+const Home = () => {
   // create state for holding returned google api data
   const [searchedGoals, setSearchedGoals] = useState([]);
   // create state for holding our search field data
@@ -142,4 +142,4 @@ const SearchGoals = () => {
   );
 };
 
-export default SearchGoals;
+export default Home;
