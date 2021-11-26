@@ -25,6 +25,8 @@ function Cal(activeStartDate) {
         />
         <div className="calgoal-container">
           <h1>Today's Goals</h1>
+          <br />
+          <hr></hr>
         </div>
       </div>
     </div>
