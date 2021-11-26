@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
-import { getMe } from '../utils/API';
-import Auth from '../utils/auth';
+import React, { useState, useEffect } from "react";
+import {
+  Jumbotron,
+  Container,
+  CardColumns,
+  Card,
+  Button,
+} from "react-bootstrap";
+import { getMe } from "../utils/API";
+import Auth from "../utils/auth";
 
-import ReviewButtons from '../components/Daily Review/ReviewButtons';
-import Questions from '../components/Daily Review/Questions';
+import ReviewButtons from "../components/Daily Review/ReviewButtons";
+import Questions from "../components/Daily Review/Questions";
 // import { GET_GOAL } from '../utils/mutations'
 
 const DailyReview = () => {
@@ -25,7 +31,7 @@ const DailyReview = () => {
         const response = await getMe(token);
 
         if (!response.ok) {
-          throw new Error('something went wrong!');
+          throw new Error("something went wrong!");
         }
 
         const user = await response.json();
@@ -38,29 +44,25 @@ const DailyReview = () => {
     getUserData();
   }, [userDataLength]);
 
-
-
   return (
     <>
-      <Container>
-      <h1>Daily Review</h1>
-      <br />
-        <h2>Congratulations on completing a productive day</h2>
+      <Container className="daily-review">
+        <h1>DAILY REVIEW</h1>
+        <br />
+        <h2>Congratulations on completing a productive day!🎉</h2>
         <br />
         <h2>Were you able to achieve your goals today?</h2>
       </Container>
       <br />
 
       <Container>
-        
-<Questions />
-</Container>
-<br />
+        <Questions />
+      </Container>
+      <br />
 
       <Container>
-<ReviewButtons />
-        </Container>
-
+        <ReviewButtons />
+      </Container>
     </>
   );
 };
