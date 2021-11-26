@@ -12,7 +12,7 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar className="navbar-style" variant="dark" expand="lg">
+      <Navbar className="navbar-style" variant="white" expand="lg">
         <Container fluid>
           <Navbar.Brand as={Link} to="/">
             <img src="images/StudyLogo.png" alt="logo" className="logo"></img>
