@@ -91,7 +91,7 @@ const Home = () => {
     <>
       <Jumbotron className="bg-white" fluid>
         <Container>
-          <img src="images/banner.jpeg" alt="banner" className="banner"></img>
+          <img src="images/banner.jpg" alt="banner" className="banner"></img>
         </Container>
       </Jumbotron>
 
