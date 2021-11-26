@@ -28,15 +28,24 @@ h6 {
 } */
 
 .btn-create-goals {
-  @apply bg-gray-600 hover:text-white hover:bg-green-700  hover:no-underline text-white font-bold py-14 px-28 rounded bottom-1 mt-20;
+  @apply bg-gray-600 hover:text-white hover:bg-green-700  hover:no-underline text-white font-bold py-14 px-28 rounded bottom-1 mt-20 shadow-2xl;
 }
 
 .btn-schedule {
-  @apply bg-gray-600 hover:text-white hover:bg-green-700 hover:no-underline text-white font-bold py-14 px-28 rounded bottom-1 mt-20;
+  @apply bg-gray-600 hover:text-white hover:bg-green-700 hover:no-underline text-white font-bold py-14 px-28 rounded bottom-1 mt-20 shadow-2xl;
 }
 
 .navbar-style {
   @apply bg-green-700;
+}
+
+.banner {
+  @apply rounded-2xl shadow-2xl;
+}
+
+.logo {
+  height: 5vh;
+  margin-right: 5px;
 }
 
 .schedule-container {

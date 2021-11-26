@@ -89,9 +89,9 @@ const SearchGoals = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      <Jumbotron className="bg-white" fluid>
         <Container>
-          <h1>HomePage</h1>
+          <img src="images/banner.jpeg" alt="banner" className="banner"></img>
         </Container>
       </Jumbotron>
 
