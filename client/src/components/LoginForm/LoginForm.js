@@ -1,15 +1,19 @@
 // see SignupForm.js for comments
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
+import { Redirect } from 'react-router-dom';
+import AuthContext from '../../store';
 
 function LoginForm() {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN_USER);
 
   const [showAlert, setShowAlert] = useState(false);
+
+  const authCtx = useContext(AuthContext);
 
   useEffect(() => {
     if (error) {
@@ -29,7 +33,7 @@ function LoginForm() {
         },
       });
       const token = mutationResponse.data.login.token;
-      Auth.login(token);
+      authCtx.login(token);
     } catch (e) {
       console.log(e);
     }
@@ -42,6 +46,10 @@ function LoginForm() {
       [name]: value,
     });
   };
+
+  if (authCtx.isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>

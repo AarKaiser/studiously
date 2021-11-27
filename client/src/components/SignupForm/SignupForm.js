@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
 import { ADD_USER } from '../../utils/mutations';
+import { Redirect } from 'react-router-dom';
+import AuthContext from '../../store';
 
 function SignupForm(props) {
   // set initial form state
@@ -14,6 +16,9 @@ function SignupForm(props) {
   const [addUser, { error }] = useMutation(ADD_USER);
   const [showAlert, setShowAlert] = useState(false);
 
+  const authCtx = useContext(AuthContext);
+
+  // Alert effect
   useEffect(() => {
     if (error) {
       setShowAlert(true);
@@ -21,6 +26,8 @@ function SignupForm(props) {
       setShowAlert(false);
     }
   }, [error]);
+
+  // Signup submit handler
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const mutationResponse = await addUser({
@@ -32,9 +39,10 @@ function SignupForm(props) {
     });
 
     const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
+    authCtx.login(token);
   };
 
+  // Inputs change handler
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({
@@ -42,6 +50,11 @@ function SignupForm(props) {
       [name]: value,
     });
   };
+
+  // Check if user is authenticated
+  if (authCtx.isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>

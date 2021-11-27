@@ -12,9 +12,7 @@ const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
 
-  const state = useContext(AuthContext);
-
-  console.log(state);
+  const authCtx = useContext(AuthContext);
 
   return (
     <>
@@ -27,7 +25,7 @@ const AppNavbar = () => {
           <Navbar.Collapse id="navbar">
             <Nav className="ml-auto">
               {/* if user is logged in show saved goals and logout */}
-              {Auth.loggedIn() ? (
+              {authCtx.isAuthenticated ? (
                 <>
                   <Nav.Link as={Link} to="/dashboard" className="nav-link">
                     Dashboard
@@ -45,7 +43,7 @@ const AppNavbar = () => {
                     Timer
                   </Nav.Link>
 
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  <Nav.Link onClick={authCtx.logout}>Logout</Nav.Link>
                 </>
               ) : (
                 <>
