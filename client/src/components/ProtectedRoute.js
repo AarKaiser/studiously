@@ -1,9 +1,11 @@
 import { Redirect } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from '../store';
 
 const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = true;
+  const authCtx = useContext(AuthContext);
 
-  if (!isAuthenticated) {
+  if (!authCtx.isAuthenticated) {
     return <Redirect exact to="/login" />;
   } else {
     return children;
