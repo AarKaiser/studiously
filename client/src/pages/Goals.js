@@ -124,7 +124,7 @@ function Goals(props) {
 </li>
 </div>
 
-</container> 
+</container>
     </>
   );
 };
