@@ -4,9 +4,10 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 import React, { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
-import { SAVE_GOAL } from '../utils/mutations';
+import { SAVE_GOAL, REMOVE_GOAL } from '../utils/mutations';
+import { QUERY_ME } from '../utils/queries';
 // import { REMOVE_GOAL } from '../utils/mutations';
 
 import ProtectedRoute from '../components/ProtectedRoute';
@@ -16,10 +17,17 @@ function Goals(props) {
   const [userFormData, setUserFormData] = useState({
     name: '',
     description: '',
+    timer: '',
   });
+  const { userError, loading, data } = useQuery(QUERY_ME);
+  const [userData, setUserData] = useState();
   const [saveGoal, { error }] = useMutation(SAVE_GOAL);
+  const [removeGoal, { error: removeGoalError }] = useMutation(REMOVE_GOAL);
   const [showAlert, setShowAlert] = useState(false);
 
+  // console.log(userData);
+
+  // Show alert effect
   useEffect(() => {
     if (error) {
       setShowAlert(true);
@@ -27,17 +35,41 @@ function Goals(props) {
       setShowAlert(false);
     }
   }, [error]);
+
+  useEffect(() => {
+    if (!loading && data.me) {
+      setUserData(data.me);
+    }
+  }, [loading]);
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const mutationResponse = await saveGoal({
-      variables: {
-        name: userFormData.name,
-        description: userFormData.description,
-      },
-    });
+    try {
+      const mutationResponse = await saveGoal({
+        variables: {
+          goalData: {
+            name: userFormData.name,
+            description: userFormData.description,
+          },
+        },
+      });
 
-    const token = mutationResponse.data.saveGoal.token;
-    Auth.login(token);
+      setUserData(mutationResponse.data.saveGoal);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Delete goal handler
+  const removeGoalHandler = async (goalId) => {
+    try {
+      const mutationResponse = await removeGoal({
+        variables: { goalId },
+      });
+      setUserData(mutationResponse.data.removeGoal);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleInputChange = (event) => {
@@ -93,7 +125,7 @@ function Goals(props) {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="email">
+          <Form.Label htmlFor="timer">
             How long do you want to spend on this goal?
           </Form.Label>
           <Form.Control
@@ -101,7 +133,7 @@ function Goals(props) {
             placeholder="Timer"
             name="timer"
             onChange={handleInputChange}
-            value={userFormData.description}
+            value={userFormData.timer}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -127,21 +159,34 @@ function Goals(props) {
         </div>
       </Form>
 
-      <container>
+      <div>
         <h2>Your Goals</h2>
-
-        <div className="card saved-goals">
-          <li className="list-group-item">
-            <button
-              className="delete-goal-btn"
-              onClick={console.log('Delete Goal X Click')}
-            >
-              🗑️
-            </button>{' '}
-            Saved Goal 1{' '}
-          </li>
-        </div>
-      </container>
+        {loading && <h2>Loading goals..</h2>}
+        {!loading && userError && <h2>Something went wrong!</h2>}
+        {userData &&
+          userData.savedGoals &&
+          userData.savedGoals.length === 0 && (
+            <h1>You haven't set any goal yet.</h1>
+          )}
+        {userData &&
+          userData.savedGoals &&
+          userData.savedGoals.length !== 0 &&
+          userData.savedGoals.map((goal) => {
+            return (
+              <div className="card saved-goals" key={goal._id}>
+                <li className="list-group-item">
+                  <button
+                    className="delete-goal-btn"
+                    onClick={removeGoalHandler.bind(null, goal._id)}
+                  >
+                    🗑️
+                  </button>{' '}
+                  {goal.name}{' '}
+                </li>
+              </div>
+            );
+          })}
+      </div>
     </ProtectedRoute>
   );
 }
