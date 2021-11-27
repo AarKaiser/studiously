@@ -5,7 +5,7 @@ import { getMe } from '../utils/API';
 import Auth from '../utils/auth';
 import Countdown from '../components/Timer/Countdown';
 import TimerButtons from '../components/Timer/TimerButtons.js';
-
+import ProtectedRoute from '../components/ProtectedRoute';
 
 const Timer = () => {
   const [userData, setUserData] = useState({});
@@ -38,19 +38,18 @@ const Timer = () => {
     getUserData();
   }, [userDataLength]);
   return (
-    <>
-        <Container>
-          <h1>Timer</h1>
-        </Container>
+    <ProtectedRoute>
       <Container>
-        <h2>After Goal 1, you get  a 15 mins break.</h2>
+        <h1>Timer</h1>
+      </Container>
+      <Container>
+        <h2>After Goal 1, you get a 15 mins break.</h2>
       </Container>
 
-<Countdown />
-<br />
-<TimerButtons />
-
-    </>
+      <Countdown />
+      <br />
+      <TimerButtons />
+    </ProtectedRoute>
   );
 };
 

@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import {
+  Jumbotron,
+  Container,
+  CardColumns,
+  Card,
+  Button,
+} from 'react-bootstrap';
 
 import { getMe, deleteGoal } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeGoalId } from '../utils/localStorage';
+
+import ProtectedRoute from '../components/ProtectedRoute';
 
 const SavedGoals = () => {
   const [userData, setUserData] = useState({});
@@ -66,8 +74,8 @@ const SavedGoals = () => {
   }
 
   return (
-    <>
-      <Jumbotron fluid className='text-light bg-dark'>
+    <ProtectedRoute>
+      <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Dashboard</h1>
         </Container>
@@ -75,19 +83,30 @@ const SavedGoals = () => {
       <Container>
         <h2>
           {userData.savedGoals.length
-            ? `Viewing ${userData.savedGoals.length} saved ${userData.savedGoals.length === 1 ? 'goal' : 'goals'}:`
+            ? `Viewing ${userData.savedGoals.length} saved ${
+                userData.savedGoals.length === 1 ? 'goal' : 'goals'
+              }:`
             : 'You have no saved goals!'}
         </h2>
         <CardColumns>
           {userData.savedGoals.map((goal) => {
             return (
-              <Card key={goal.goalId} border='dark'>
-                {goal.image ? <Card.Img src={goal.image} alt={`The cover for ${goal.title}`} variant='top' /> : null}
+              <Card key={goal.goalId} border="dark">
+                {goal.image ? (
+                  <Card.Img
+                    src={goal.image}
+                    alt={`The cover for ${goal.title}`}
+                    variant="top"
+                  />
+                ) : null}
                 <Card.Body>
                   <Card.Title>{goal.title}</Card.Title>
-                  <p className='small'>Authors: {goal.authors}</p>
+                  <p className="small">Authors: {goal.authors}</p>
                   <Card.Text>{goal.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteGoal(goal.goalId)}>
+                  <Button
+                    className="btn-block btn-danger"
+                    onClick={() => handleDeleteGoal(goal.goalId)}
+                  >
                     Delete this Goal!
                   </Button>
                 </Card.Body>
@@ -96,7 +115,7 @@ const SavedGoals = () => {
           })}
         </CardColumns>
       </Container>
-    </>
+    </ProtectedRoute>
   );
 };
 
