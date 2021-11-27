@@ -1,14 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
-import SignUpForm from "./SignupForm";
-import LoginForm from "./LoginForm";
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import SignUpForm from './SignupForm/SignupForm';
+import LoginForm from './LoginForm/LoginForm';
+import classes from './Navbar.module.css';
 
-import Auth from "../utils/auth";
+import Auth from '../utils/auth';
+import AuthContext from '../store';
 
 const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
+
+  const state = useContext(AuthContext);
+
+  console.log(state);
 
   return (
     <>
@@ -42,9 +48,14 @@ const AppNavbar = () => {
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>
-                  Login / Sign Up
-                </Nav.Link>
+                <>
+                  <Link to="/login" className={classes.btn}>
+                    Login
+                  </Link>
+                  <Link to="/signup" className={classes.btn}>
+                    Sign Up
+                  </Link>
+                </>
               )}
             </Nav>
           </Navbar.Collapse>

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import {
-  Container
-} from "react-bootstrap";
-import { getMe } from "../utils/API";
-import Auth from "../utils/auth";
+import React, { useState, useEffect } from 'react';
+import { Container } from 'react-bootstrap';
+import { getMe } from '../utils/API';
+import Auth from '../utils/auth';
 
-import ReviewButtons from "../components/Daily Review/ReviewButtons";
-import Questions from "../components/Daily Review/Questions";
+import ReviewButtons from '../components/Daily Review/ReviewButtons';
+import Questions from '../components/Daily Review/Questions';
 // import { GET_GOAL } from '../utils/mutations'
+
+import ProtectedRoute from '../components/ProtectedRoute';
 
 const DailyReview = () => {
   const [userData, setUserData] = useState({});
@@ -27,7 +27,7 @@ const DailyReview = () => {
         const response = await getMe(token);
 
         if (!response.ok) {
-          throw new Error("something went wrong!");
+          throw new Error('something went wrong!');
         }
 
         const user = await response.json();
@@ -41,7 +41,7 @@ const DailyReview = () => {
   }, [userDataLength]);
 
   return (
-    <>
+    <ProtectedRoute>
       <Container className="daily-review">
         <h1>DAILY REVIEW</h1>
         <br />
@@ -59,7 +59,7 @@ const DailyReview = () => {
       <Container>
         <ReviewButtons />
       </Container>
-    </>
+    </ProtectedRoute>
   );
 };
 

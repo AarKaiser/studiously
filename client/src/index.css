@@ -10,7 +10,7 @@
 @tailwind utilities;
 
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* 
@@ -95,4 +95,16 @@ h6 {
 
 .nav-link {
   @apply font-medium text-white;
+}
+
+.layout {
+  padding: 0 10rem;
+}
+
+/* AUTH FORM STYLING */
+
+.form {
+  width: 100%;
+  max-width: 30rem;
+  margin: 5rem auto;
 }
