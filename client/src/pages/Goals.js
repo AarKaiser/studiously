@@ -11,6 +11,7 @@ import { QUERY_ME } from '../utils/queries';
 // import { REMOVE_GOAL } from '../utils/mutations';
 
 import ProtectedRoute from '../components/ProtectedRoute';
+import { Link } from 'react-router-dom';
 
 function Goals(props) {
   // set initial form state
@@ -21,15 +22,16 @@ function Goals(props) {
   });
   const { userError, loading, data } = useQuery(QUERY_ME);
   const [userData, setUserData] = useState();
-  const [saveGoal, { error }] = useMutation(SAVE_GOAL);
+  const [saveGoal, { error: saveGoalError }] = useMutation(SAVE_GOAL);
   const [removeGoal, { error: removeGoalError }] = useMutation(REMOVE_GOAL);
   const [showAlert, setShowAlert] = useState(false);
+  const [error, setError] = useState('');
 
   // console.log(userData);
 
   // Show alert effect
   useEffect(() => {
-    if (error) {
+    if (error.length !== 0) {
       setShowAlert(true);
     } else {
       setShowAlert(false);
@@ -44,6 +46,35 @@ function Goals(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    const { name, description, timer } = userFormData;
+
+    // form validation
+    if (
+      name.trim().length === 0 ||
+      description.trim().length === 0 ||
+      timer.trim().length === 0
+    ) {
+      setError('All fields are required!');
+      setShowAlert(true);
+      return;
+    }
+
+    const duration = timer.split(':');
+
+    // form validation
+    if (duration.length !== 3) {
+      setError('Provide the correct format on the goal duration e.g 02:30:00');
+      setShowAlert(true);
+      return;
+    }
+
+    if (duration.find((item) => Number(item) === NaN)) {
+      setError('Provide the current format with only numbers');
+      setShowAlert(true);
+      return;
+    }
+
     try {
       const mutationResponse = await saveGoal({
         variables: {
@@ -54,8 +85,10 @@ function Goals(props) {
           },
         },
       });
-
+      setUserFormData({ name: '', description: '', timer: '' });
       setUserData(mutationResponse.data.saveGoal);
+      setShowAlert(false);
+      setError('');
     } catch (err) {
       console.log(err);
     }
@@ -82,7 +115,7 @@ function Goals(props) {
   };
 
   return (
-    <ProtectedRoute>
+    <ProtectedRoute page={{ name: 'Goals', url: 'goals' }}>
       {/* This is needed for the validation functionality above */}
       <Form noValidate onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
@@ -92,7 +125,7 @@ function Goals(props) {
           show={showAlert}
           variant="danger"
         >
-          Error with goal!
+          {error}
         </Alert>
 
         <Form.Group>
@@ -143,7 +176,7 @@ function Goals(props) {
         </Form.Group>
 
         <Button
-          disabled={!(userFormData.name && userFormData.description)}
+          // disabled={!(userFormData.name && userFormData.description)}
           type="submit"
           variant="success"
         >
@@ -151,12 +184,12 @@ function Goals(props) {
         </Button>
 
         <div className="flex justify-center space-x-10">
-          <a
-            href="/timer"
+          <Link
+            to="/timer"
             className="bg-gray-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded bottom-1 justify-start"
           >
             Start Achieving!
-          </a>
+          </Link>
         </div>
       </Form>
 
@@ -176,13 +209,16 @@ function Goals(props) {
             return (
               <div className="card saved-goals" key={goal._id}>
                 <li className="list-group-item">
-                  <button
-                    className="delete-goal-btn"
-                    onClick={removeGoalHandler.bind(null, goal._id)}
-                  >
-                    🗑️
-                  </button>{' '}
-                  {goal.name}{' '}
+                  <span>
+                    <button
+                      className="delete-goal-btn"
+                      onClick={removeGoalHandler.bind(null, goal._id)}
+                    >
+                      🗑️
+                    </button>{' '}
+                    {goal.name}{' '}
+                  </span>
+                  <span>{goal.duration}</span>
                 </li>
               </div>
             );

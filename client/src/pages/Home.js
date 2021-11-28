@@ -7,7 +7,7 @@ import ProtectedRoute from '../components/ProtectedRoute';
 
 const Home = () => {
   return (
-    <ProtectedRoute>
+    <>
       <Jumbotron className="bg-white" fluid>
         <Container>
           <img src="images/banner.jpg" alt="banner" className="banner"></img>
@@ -17,7 +17,7 @@ const Home = () => {
       <Container>
         <HomeButtons />
       </Container>
-    </ProtectedRoute>
+    </>
   );
 };
 

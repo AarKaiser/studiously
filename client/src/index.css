@@ -108,3 +108,15 @@ h6 {
   max-width: 30rem;
   margin: 5rem auto;
 }
+
+.btn-complete {
+  padding: 0.2rem 1rem;
+  margin: 0.2rem;
+  outline: none;
+  border: 1px solid #e5e5e5;
+  transition: all 0.3s;
+}
+
+.btn-complete:hover {
+  background-color: #c5c5c5;
+}
