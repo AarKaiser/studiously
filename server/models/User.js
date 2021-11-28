@@ -52,6 +52,11 @@ userSchema.virtual('goalCount').get(function () {
   return this.savedGoals.length;
 });
 
+userSchema.pre(/find/, function (next) {
+  this.populate('savedGoals');
+  next();
+});
+
 const User = model('User', userSchema);
 
 module.exports = User;

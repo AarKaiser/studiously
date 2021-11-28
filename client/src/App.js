@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Goals from './pages/Goals';
@@ -8,6 +8,7 @@ import DailyReview from './pages/DailyReview';
 import Timer from './pages/Timer';
 import SignupForm from './components/SignupForm/SignupForm';
 import LoginForm from './components/LoginForm/LoginForm';
+import AuthContext from './store';
 
 import Navbar from './components/Navbar';
 
@@ -40,6 +41,12 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const authCtx = useContext(AuthContext);
+
+  useEffect(() => {
+    authCtx.loggedIn();
+  }, []);
+
   return (
     <ApolloProvider client={client}>
       <Router>

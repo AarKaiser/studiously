@@ -50,6 +50,7 @@ function Goals(props) {
           goalData: {
             name: userFormData.name,
             description: userFormData.description,
+            duration: userFormData.timer,
           },
         },
       });

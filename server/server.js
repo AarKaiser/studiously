@@ -3,6 +3,7 @@ const path = require('path');
 const db = require('./config/connection');
 const routes = require('./routes');
 const { protect } = require('./controllers/auth-controller');
+require('dotenv').config({ path: '../config.env' });
 
 // const schema = require('./schemas/schema');
 // const graphqlHTTP = require('express-graphql');
