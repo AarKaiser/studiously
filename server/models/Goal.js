@@ -12,6 +12,14 @@ const goalSchema = new Schema({
     type: String,
     required: [true, 'A goal must have a name!'],
   },
+  duration: {
+    type: String,
+    required: [true, 'A goal must have a duration!'],
+  },
+  dateCreated: {
+    type: Date,
+    default: Date.now,
+  },
   userId: {
     type: String,
     required: [true, 'A goal must be associated to a user!'],
