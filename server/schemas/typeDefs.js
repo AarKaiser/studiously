@@ -34,12 +34,14 @@ const typeDefs = gql`
     name: String
     duration: String
     dateCreated: Date
+    completed: Boolean
   }
   input goalInput {
     description: String
     name: String
     duration: String
     dateCreated: Date
+    completed: Boolean
   }
   type Auth {
     token: ID!
@@ -53,6 +55,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     saveGoal(goalData: goalInput!): User
     removeGoal(goalId: ID!): User
+    setCompletedGoal(goalId: ID!, completed: String!): User
   }
 `;
 

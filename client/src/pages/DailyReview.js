@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { getMe } from '../utils/API';
 import Auth from '../utils/auth';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import { SET_COMPLETED_GOAL } from '../utils/mutations';
 
 import ReviewButtons from '../components/Daily Review/ReviewButtons';
 import Questions from '../components/Daily Review/Questions';
@@ -14,14 +15,28 @@ import ProtectedRoute from '../components/ProtectedRoute';
 const DailyReview = () => {
   const [userData, setUserData] = useState([]);
 
-  const { loading, error, data } = useQuery(QUERY_ME);
+  const { loading, error: queryError, data } = useQuery(QUERY_ME);
+  const [setCompletedGoal, { error: mutationError }] =
+    useMutation(SET_COMPLETED_GOAL);
+
+  const completedGoalHandler = async (goalId, completed) => {
+    try {
+      const mutationResponse = await setCompletedGoal({
+        variables: { goalId, completed },
+      });
+      setUserData(mutationResponse.data.setCompletedGoal);
+      console.log(mutationResponse.data.setCompletedGoal);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     setUserData(data);
   }, [data]);
 
   return (
-    <ProtectedRoute>
+    <ProtectedRoute page={{ name: 'Daily Review', url: 'dailyreview' }}>
       <Container className="daily-review">
         <h1>DAILY REVIEW</h1>
         <br />
@@ -32,7 +47,10 @@ const DailyReview = () => {
       <br />
 
       <Container>
-        <Questions userData={userData} />
+        <Questions
+          userData={userData}
+          setCompletedGoal={completedGoalHandler}
+        />
       </Container>
       <br />
 

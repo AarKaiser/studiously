@@ -46,6 +46,40 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    setCompletedGoal: async (parent, { goalId, completed }, context) => {
+      if (context.user) {
+        // Find user
+        const userData = await User.findById(context.user._id).lean();
+        // Find target goal
+        const targetGoal = userData.savedGoals.find((goal) => {
+          return String(goal._id) === String(goalId);
+        });
+        // Construct updated goal
+        let value;
+        if (completed === 'yes') value = true;
+        if (completed === 'no') value = false;
+        if (completed === 'reset') value = null;
+
+        const updatedGoal = { ...targetGoal, completed: value };
+        // Get index of target goal
+        const indexOfTargetGoal = userData.savedGoals.findIndex(
+          (goal) => String(goal._id) === String(goalId)
+        );
+
+        // Replace target goal with updated goal
+        const updatedGoals = userData.savedGoals;
+        updatedGoals[indexOfTargetGoal] = updatedGoal;
+
+        // Update the user's goal
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { savedGoals: updatedGoals },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
 
     removeGoal: async (parent, args, context) => {
       if (context.user) {
