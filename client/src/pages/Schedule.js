@@ -18,6 +18,26 @@ const dataMilliSeconds = (formTimeData) => {
   return milliSeconds;
 };
 
+const isSameDay = (firstDate, secondDate) => {
+  // console.log(new Date(firstDate));
+  // console.log(secondDate);
+  secondDate = new Date(secondDate);
+
+  // if (firstDate.getFullYear() !== secondDate.getFullYear()) {
+  //   return false;
+  // }
+
+  // if (firstDate.getMonth() !== secondDate.getMonth()) {
+  //   return false;
+  // }
+
+  // if (firstDate.getDay() !== secondDate.getDay()) {
+  //   return false;
+  // }
+
+  return true;
+};
+
 function Cal(activeStartDate) {
   const { error, loading, data, refetch } = useQuery(QUERY_ME);
 
@@ -37,9 +57,19 @@ function Cal(activeStartDate) {
 
   useEffect(() => {
     // Set filtered date
-    // const
+    if (userData && userData.me) {
+      const filtrdGoals = userData.me.savedGoals.filter((goal) => {
+        const goalDate = goal.dateCreated;
+        const selectedDate = date;
+        console.log(goal.dateCreated);
 
-    console.log(date);
+        return isSameDay(goalDate, selectedDate);
+      });
+
+      setFilteredGoals(filtrdGoals);
+    }
+
+    // console.log(date);
   }, [date]);
 
   return (
@@ -67,7 +97,7 @@ function Cal(activeStartDate) {
             {loading && <h2>Loading saved goals...</h2>}
             {!loading && userData && userData.me && (
               <ul>
-                {userData.me.savedGoals.map((goal) => {
+                {filteredGoals.map((goal) => {
                   return <h2>{goal.name}</h2>;
                 })}
               </ul>
