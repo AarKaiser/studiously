@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { getMe } from '../utils/API';
 import Auth from '../utils/auth';
+import { useQuery } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
 
 import ReviewButtons from '../components/Daily Review/ReviewButtons';
 import Questions from '../components/Daily Review/Questions';
@@ -10,35 +12,13 @@ import Questions from '../components/Daily Review/Questions';
 import ProtectedRoute from '../components/ProtectedRoute';
 
 const DailyReview = () => {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState([]);
 
-  // use this to determine if `useEffect()` hook needs to run again
-  const userDataLength = Object.keys(userData).length;
+  const { loading, error, data } = useQuery(QUERY_ME);
 
   useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-        if (!token) {
-          return false;
-        }
-
-        const response = await getMe(token);
-
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
-
-        const user = await response.json();
-        setUserData(user);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    getUserData();
-  }, [userDataLength]);
+    setUserData(data);
+  }, [data]);
 
   return (
     <ProtectedRoute>
@@ -52,7 +32,7 @@ const DailyReview = () => {
       <br />
 
       <Container>
-        <Questions />
+        <Questions userData={userData} />
       </Container>
       <br />
 

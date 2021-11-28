@@ -6,12 +6,24 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import { Redirect } from 'react-router-dom';
 import AuthContext from '../../store';
+import useParamsQuery from '../../utils/hooks/use-query';
 
 function LoginForm() {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN_USER);
+  const query = useParamsQuery();
 
   const [showAlert, setShowAlert] = useState(false);
+
+  // Authentication required error
+  const [showAuthAlert, setShowAuthAlert] = useState(false);
+  const fallback = query.get('fallback');
+
+  useEffect(() => {
+    if (fallback) {
+      setShowAuthAlert(true);
+    }
+  }, [fallback]);
 
   const authCtx = useContext(AuthContext);
 
@@ -48,7 +60,8 @@ function LoginForm() {
   };
 
   if (authCtx.isAuthenticated) {
-    return <Redirect to="/" />;
+    const redirectPage = query.get('fallback') ? query.get('fallback') : '';
+    return <Redirect to={`/${redirectPage}`} />;
   }
 
   return (
@@ -61,6 +74,14 @@ function LoginForm() {
           variant="danger"
         >
           Something went wrong with your login credentials!
+        </Alert>
+        <Alert
+          variant="danger"
+          show={showAuthAlert}
+          onClose={() => setShowAuthAlert(false)}
+          dismissible
+        >
+          Login in to access {query.get('pageName')} page
         </Alert>
         <Form.Group>
           <Form.Label htmlFor="email">Email</Form.Label>

@@ -68,7 +68,7 @@ function Cal(activeStartDate) {
   }, [date]);
 
   return (
-    <ProtectedRoute>
+    <ProtectedRoute page={{ name: 'Schedule', url: 'schedule' }}>
       <div className="schedule-container">
         <div className="calendar-container">
           <h1>Your Schedule</h1>
