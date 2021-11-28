@@ -19,23 +19,19 @@ const dataMilliSeconds = (formTimeData) => {
 };
 
 const isSameDay = (firstDate, secondDate) => {
-  // console.log(new Date(firstDate));
-  // console.log(secondDate);
-  secondDate = new Date(secondDate);
+  const year1 = firstDate.getFullYear();
+  const year2 = secondDate.getFullYear();
 
-  // if (firstDate.getFullYear() !== secondDate.getFullYear()) {
-  //   return false;
-  // }
+  const month1 = firstDate.getMonth();
+  const month2 = secondDate.getMonth();
 
-  // if (firstDate.getMonth() !== secondDate.getMonth()) {
-  //   return false;
-  // }
+  const day1 = firstDate.getDate();
+  const day2 = secondDate.getDate();
 
-  // if (firstDate.getDay() !== secondDate.getDay()) {
-  //   return false;
-  // }
+  const firstDateStr = `${year1}-${month1}-${day1}`;
+  const secondDateStr = `${year2}-${month2}-${day2}`;
 
-  return true;
+  return firstDateStr === secondDateStr;
 };
 
 function Cal(activeStartDate) {
@@ -59,9 +55,8 @@ function Cal(activeStartDate) {
     // Set filtered date
     if (userData && userData.me) {
       const filtrdGoals = userData.me.savedGoals.filter((goal) => {
-        const goalDate = goal.dateCreated;
+        const goalDate = new Date(goal.dateCreated);
         const selectedDate = date;
-        console.log(goal.dateCreated);
 
         return isSameDay(goalDate, selectedDate);
       });
@@ -98,7 +93,7 @@ function Cal(activeStartDate) {
             {!loading && userData && userData.me && (
               <ul>
                 {filteredGoals.map((goal) => {
-                  return <h2>{goal.name}</h2>;
+                  return <h2 key={goal._id}>{goal.name}</h2>;
                 })}
               </ul>
             )}

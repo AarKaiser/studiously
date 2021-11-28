@@ -18,7 +18,7 @@ const goalSchema = new Schema({
   },
   dateCreated: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
   userId: {
     type: String,
