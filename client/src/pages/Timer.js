@@ -85,7 +85,7 @@ const Timer = () => {
   }, [counting]);
 
   return (
-    <ProtectedRoute>
+    <ProtectedRoute page={{ name: 'Timer', url: 'timer' }}>
       <Container>
         <h1>Timer</h1>
       </Container>

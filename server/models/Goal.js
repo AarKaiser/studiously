@@ -24,6 +24,7 @@ const goalSchema = new Schema({
     type: String,
     required: [true, 'A goal must be associated to a user!'],
   },
+  completed: Boolean,
 });
 
 module.exports = goalSchema;

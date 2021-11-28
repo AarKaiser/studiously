@@ -41,6 +41,24 @@ export const SAVE_GOAL = gql`
   }
 `;
 
+export const SET_COMPLETED_GOAL = gql`
+  mutation setCompletedGoal($goalId: ID!, $completed: String!) {
+    setCompletedGoal(goalId: $goalId, completed: $completed) {
+      _id
+      username
+      email
+      savedGoals {
+        _id
+        description
+        name
+        dateCreated
+        duration
+        completed
+      }
+    }
+  }
+`;
+
 export const REMOVE_GOAL = gql`
   mutation removeGoal($goalId: ID!) {
     removeGoal(goalId: $goalId) {

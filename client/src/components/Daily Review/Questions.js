@@ -18,9 +18,6 @@ const isSameDay = (firstDate, secondDate) => {
 };
 
 function Questions(props) {
-  const [completedIds, setCompletedIds] = useState([]);
-  const [unCompletedIds, setUnCompletedIds] = useState([]);
-
   const [todaysGoal, setTodaysGoal] = useState();
 
   useEffect(() => {
@@ -33,38 +30,6 @@ function Questions(props) {
     }
   }, [props]);
 
-  const handleCompleted = (id) => {
-    setCompletedIds((prevIds) => [...prevIds, id]);
-  };
-
-  const handlerUnCompleted = (id) => {
-    setUnCompletedIds((prevIds) => [...prevIds, id]);
-  };
-
-  const iscompletedGoal = (goalId) => {
-    const completed = completedIds.find((id) => id === goalId);
-    if (completed) {
-      return <h3 style={{ color: 'green' }}>Goal completed</h3>;
-    }
-  };
-
-  const isUncompletedGoal = (goalId) => {
-    const completed = unCompletedIds.find((id) => id === goalId);
-    if (completed) {
-      return <h3 style={{ color: 'red' }}>Unable to complete goal</h3>;
-    }
-  };
-
-  const isDone = (goalId) => {
-    const isCompleted = unCompletedIds.find((id) => id === goalId);
-    const isNotCompleted = completedIds.find((id) => id === goalId);
-
-    if (isCompleted || isNotCompleted) {
-      return true;
-    }
-    return false;
-  };
-
   return (
     <>
       {todaysGoal &&
@@ -73,25 +38,63 @@ function Questions(props) {
             <Fragment key={goal._id}>
               <Container>
                 <h2>{goal.name} ?</h2>
-                {!isDone(goal._id) && (
+                {goal.completed !== true && goal.completed !== false && (
                   <>
                     <button
                       className="btn-complete"
-                      onClick={handleCompleted.bind(null, goal._id)}
+                      onClick={props.setCompletedGoal.bind(
+                        null,
+                        goal._id,
+                        'yes'
+                      )}
                     >
                       Yes
                     </button>
                     <br />
                     <button
                       className="btn-complete"
-                      onClick={handlerUnCompleted.bind(null, goal._id)}
+                      onClick={props.setCompletedGoal.bind(
+                        null,
+                        goal._id,
+                        'no'
+                      )}
                     >
                       No
                     </button>{' '}
                   </>
                 )}
-                {iscompletedGoal(goal._id)}
-                {isUncompletedGoal(goal._id)}
+                {goal.completed && (
+                  <>
+                    <h3 style={{ color: 'green' }}>Goal completed</h3>
+                    <button
+                      className="btn-complete"
+                      onClick={props.setCompletedGoal.bind(
+                        null,
+                        goal._id,
+                        'reset'
+                      )}
+                    >
+                      Reset goal
+                    </button>
+                  </>
+                )}
+                {goal.completed === false && (
+                  <>
+                    <h3 style={{ color: 'red' }}>Unable to complete goal</h3>
+                    <button
+                      className="btn-complete"
+                      onClick={props.setCompletedGoal.bind(
+                        null,
+                        goal._id,
+                        'reset'
+                      )}
+                    >
+                      Reset goal
+                    </button>
+                  </>
+                )}
+                {/* {iscompletedGoal(goal._id)}
+                {isUncompletedGoal(goal._id)} */}
               </Container>
               <br />
             </Fragment>

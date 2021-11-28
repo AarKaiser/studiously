@@ -74,7 +74,7 @@ const SavedGoals = () => {
   }
 
   return (
-    <ProtectedRoute>
+    <ProtectedRoute page={{ name: 'Dashboard', url: 'dashboard' }}>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Dashboard</h1>

@@ -11,6 +11,7 @@ export const QUERY_ME = gql`
         name
         duration
         dateCreated
+        completed
       }
     }
   }
