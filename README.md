@@ -1,14 +1,12 @@
-
-
 # Studiously
           
 ## Description
 
-Summary: - This application will assist you in planning and managing you study. With goals set to be done in a timely fashion (timer function) you can plan your time efficiently. Once a goal is achieved you should be able to delete it and if your goal is overdue, you will get a reminder. Every day you will fill out a questionnaire to see how you did for the day, and what can be done to improve your routine. The application also provides suggestions and help if needed.
-Motivation: - To facilitate efficient studying for future cohorts.
-Reason for Application: - To practice and strengthen all the skills we've learned throughout our Boot Camp.
-Problem Solved: - The inability to study for prolonged peroids while stayig focused.
-Lessons: - Heroku sucks. Sort of.
+Summary: - This application will assist you in planning and managing you study. With goals set to be done in a timely fashion (timer function) you can plan your time efficiently. Once a goal is achieved you should be able to delete it and if your goal is overdue, you will get a reminder. Every day you will fill out a questionnaire to see how you did for the day, and what can be done to improve your routine. The application also provides suggestions and help if needed.  
+Motivation: - To facilitate efficient studying for future cohorts.    
+Reason for Application: - To practice and strengthen all the skills we've learned throughout our Boot Camp.  
+Problem Solved: - The inability to study for prolonged periods while staying focused.  
+Lessons: - Teamwork is essential to any successful project!  
 
 ## Table of Contents
 
@@ -70,6 +68,8 @@ Please feel free to contact us with further questions via email, which is our pr
 
 ## Screenshot
 
-![Screenshot](https://raw.githubusercontent.com/AarKaiser/studiously/_%20devassets%20_/main/assets/images/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/AarKaiser/studiously/_%20devassets%20_/main/_%20devassets%20_/Images/screenshot.png)
 
 ## Walkthrough Video
+
+
