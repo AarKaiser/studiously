@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Container } from 'react-bootstrap';
-
-import { getMe } from '../utils/API';
-import Auth from '../utils/auth';
 import Countdown from '../components/Timer/Countdown';
 import TimerButtons from '../components/Timer/TimerButtons.js';
 import ProtectedRoute from '../components/ProtectedRoute';
