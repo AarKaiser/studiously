@@ -25,31 +25,37 @@
   None
 
   ## Github:
-  https://github.com/ArshleenKNagpal
+  [Arshleen](https://github.com/ArshleenKNagpal)
 
-  https://github.com/vcapella
+  [Victor](https://github.com/vcapella)
 
-  https://github.com/AarKaiser
+  [Aar](https://github.com/AarKaiser)
 
-  https://github.com/SSinghcode
+  [Shamsher](https://github.com/SSinghcode)
 
-  https://github.com/Algex07
+  [Amar](https://github.com/Algex07)
 
-  ## If any questions connect with me @:
-  amar_algu@hotmail.com
+  ## If any questions connect with us @:
+  * [Arshleen](arshleenknagpal@gmail.com)
+
+  * [Amar](amar_algu@hotmail.com)
+
+
 
   ## Contribution:
-  Arshleen Nagpal
-  Victor Capella
-  Aar Kaiser
-  Shamsher Singh
-  Amar Algu
+  * Arshleen Nagpal
+  * Victor Capella
+  * Aar Kaiser
+  * Shamsher Singh
+  * Amar Algu
 
   ## Test:
   none
 
   ## Links:
-  https://github.com/AarKaiser/studiously
+  [Github](https://github.com/AarKaiser/studiously)
+  
+  [Heroku](https://studiously.herokuapp.com/)
 
   
  
