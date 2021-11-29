@@ -68,7 +68,7 @@ Please feel free to contact us with further questions via email, which is our pr
 
 ## Screenshot
 
-![Screenshot](https://raw.githubusercontent.com/AarKaiser/studiously/_%20devassets%20_/main/_%20devassets%20_/Images/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/AarKaiser/studiously/main/_%20devassets%20_/Images/screenshot.png)
 
 ## Walkthrough Video
 
