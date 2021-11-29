@@ -18,12 +18,14 @@ export default function ReviewButtons({
       <button
         onClick={resetGoalTimer}
         className="content-end bg-gray-600 blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded -bottom-1 justify-end"
+        disabled
       >
         Restart
       </button>
       <button
         onClick={moveToNextGoal}
         className="content-end bg-gray-600 blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded -bottom-1 justify-end"
+        disabled
       >
         Next Goal
       </button>

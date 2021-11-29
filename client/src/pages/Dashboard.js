@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import './Dashboard.css';
 import ProtectedRoute from '../components/ProtectedRoute';
@@ -13,7 +13,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import useGraph from './use-graph';
+import useGraph from './hooks/use-graph';
 
 ChartJS.register(
   CategoryScale,
@@ -26,17 +26,21 @@ ChartJS.register(
 );
 
 const SavedGoals = () => {
-  const [userData, setUserData] = useState({});
-  const { data, options } = useGraph();
-  // daily example
-  // Get today goal
-  // filter the completed
-  // numOfCompleted / totalNumber of todays goal
+  const {
+    data: { time, completed, goal },
+    options,
+  } = useGraph();
 
   return (
     <ProtectedRoute page={{ name: 'Dashboard', url: 'dashboard' }}>
-      <Container>
-        <Line data={data} options={options} />
+      <Container style={{ marginBottom: '2rem' }}>
+        <Line options={options} data={goal} />
+      </Container>
+      <Container style={{ marginBottom: '2rem' }}>
+        <Line options={options} data={completed} />
+      </Container>
+      <Container style={{ marginBottom: '2rem' }}>
+        <Line options={options} data={time} />
       </Container>
     </ProtectedRoute>
   );
