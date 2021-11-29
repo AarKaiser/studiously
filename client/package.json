@@ -9,7 +9,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "autoprefixer": "^10.4.0",
     "bootstrap": "^4.6.1",
     "bootstrap-icons": "^1.7.1",
     "chart.js": "^3.6.0",
@@ -17,15 +16,13 @@
     "graphql": "^16.0.1",
     "jwt-decode": "^2.2.0",
     "moment": "^2.29.1",
-    "postcss": "^8.4.4",
     "react": "^16.13.1",
     "react-bootstrap": "^1.6.4",
     "react-calendar": "^3.5.0",
     "react-chartjs-2": "^4.0.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^4.0.3",
-    "tailwindcss": "^2.2.19"
+    "react-scripts": "^4.0.3"
   },
   "scripts": {
     "start": "craco start",
@@ -48,5 +45,9 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "autoprefixer": "^9.8.8",
+    "postcss": "^7.0.39",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+  }
 }
