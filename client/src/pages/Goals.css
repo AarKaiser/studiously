@@ -1,4 +1,4 @@
-.goals-container {
+/* .goals-container {
   width: 75vw;
   margin: auto;
   margin-top: 10px;
@@ -13,10 +13,10 @@
 .goal-input {
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
+} */
+/* 
 .card .saved-goals {
-  /* @apply bg-green-700; */
+  
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   opacity: 0.1;
@@ -124,7 +124,4 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.nav-link {
-}
+} */
