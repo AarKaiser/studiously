@@ -9,6 +9,25 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  /* overflow: hidden; */
+}
+
+/* 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Rubik Mono One', sans-serif;
+}
+
+.small {
+  font-weight: 300;
+  font-style: italic;
+} */
+
 .btn-create-goals {
   @apply bg-green-500 hover:text-white hover:bg-green-700  hover:no-underline text-white font-bold py-14 px-28 rounded bottom-1 mt-20 shadow-2xl;
 }
@@ -28,30 +47,9 @@
 .daily-review {
   @apply flex justify-center;
 }
-
-.nav-link:hover {
-  @apply bg-green-900 text-white;
-  opacity: 0.8;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.dailyreview-container{
+  @apply w-full h-full bg-no-repeat bg-cover
 }
-
-.nav-link {
-  @apply font-medium text-white;
-}
-
-.goals-title {
-  @apply text-3xl flex justify-center font-semibold;
-}
-
-.goals-submit {
-  @apply bg-green-500 hover:text-white hover:bg-green-700 hover:no-underline text-white font-bold py-2 px-8 rounded bottom-1 mt-2 shadow-2xl;
-}
-
-.goals-srt-achieve {
-  @apply bg-green-500 hover:text-white hover:bg-green-700 hover:no-underline text-white font-bold py-2 px-12 rounded bottom-1 mt-2 shadow-2xl;
-}
-
 .logo {
   height: 5vh;
   margin-right: 5px;
@@ -90,10 +88,20 @@
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.nav-link:hover {
+  @apply bg-green-900 text-white;
+  opacity: 0.8;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
-/* .layout {
+.nav-link {
+  @apply font-medium text-white;
+}
+
+.layout {
   padding: 0 10rem;
-} */
+}
 
 /* AUTH FORM STYLING */
 
@@ -113,4 +121,8 @@
 
 .btn-complete:hover {
   background-color: #c5c5c5;
+}
+.study-txt{
+  @apply text-center my-28;
+  
 }
