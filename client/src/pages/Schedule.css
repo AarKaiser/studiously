@@ -13,7 +13,7 @@ h1 {
   /* height: 92vh; */
   background: var(--cal2);
   /* overflow: hidden; */
-  background-image: url('../images/grassblades.jpg');
+  background-image: url("../images/grassbladesOpac.jpg");
 }
 
 .calendar-container {

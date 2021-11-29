@@ -1,3 +1,11 @@
+.bg-img-goals {
+  height: 92.3vh;
+  width: 198.1vh;
+  overflow-x: hidden;
+  background-image: url("../images/grassbladesOpac.jpg");
+  background-repeat: no-repeat;
+}
+
 /* .goals-container {
   width: 75vw;
   margin: auto;
