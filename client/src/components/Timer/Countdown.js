@@ -8,7 +8,7 @@ function Countdown({ hours, minutes, seconds }) {
       {/* {timerComponents.length ? timerComponents : <span>Time's up!</span>} */}
       <h3>Hours: {hours}</h3>
       <h3>Minutes: {minutes}</h3>
-      <h3>Seeconds: {seconds}</h3>
+      <h3>Seconds: {seconds}</h3>
     </div>
   );
 }

@@ -117,7 +117,7 @@
   background-color: #c5c5c5;
 }
 .study-txt{
-  @apply text-center my-28;
+  @apply text-center;
   font-size: large;
   font-weight: bolder;
   color:#0B4619 ;
