@@ -40,10 +40,10 @@ This application can be accessed on Heroku [here](https://studiously.herokuapp.c
 
 ## Contributing
 
-[Aar](https://www.github.com/aarkaiser).
-[Amar](https://github.com/Algex07).
-[Arshleen](https://github.com/ArshleenKNagpal).
-[Shamsher](https://github.com/SSinghcode).
+[Aar](https://www.github.com/aarkaiser), 
+[Amar](https://github.com/Algex07), 
+[Arshleen](https://github.com/ArshleenKNagpal), 
+[Shamsher](https://github.com/SSinghcode), and
 [Victor](https://github.com/vcapella).
 
 
