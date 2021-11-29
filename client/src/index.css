@@ -48,29 +48,6 @@ h6 {
   @apply flex justify-center;
 }
 
-.nav-link:hover {
-  @apply bg-green-900 text-white;
-  opacity: 0.8;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.nav-link {
-  @apply font-medium text-white;
-}
-
-.goals-title {
-  @apply text-3xl;
-}
-
-.goals-submit {
-  @apply bg-green-500 hover:text-white hover:bg-green-700 hover:no-underline text-white font-bold py-2 px-8 rounded bottom-1 mt-2 shadow-2xl;
-}
-
-.goals-srt-achieve {
-  @apply bg-green-500 hover:text-white hover:bg-green-700 hover:no-underline text-white font-bold py-2 px-12 rounded bottom-1 mt-2 shadow-2xl;
-}
-
 .logo {
   height: 5vh;
   margin-right: 5px;
@@ -108,6 +85,16 @@ h6 {
   border: 2px solid var(--cal2);
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.nav-link:hover {
+  @apply bg-green-900 text-white;
+  opacity: 0.8;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.nav-link {
+  @apply font-medium text-white;
 }
 
 .layout {
