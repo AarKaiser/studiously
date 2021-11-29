@@ -1,25 +1,21 @@
-.daily-review{
-    display: flex;
-    padding-top:165px;
- 
+.daily-review {
+  display: flex;
+  padding-top: 165px;
 }
-.daily-review h1{
-   
-    font-weight: bolder;
-    font-size: larger;
-    color:#0F2C67;
+.daily-review h1 {
+  font-weight: bolder;
+  font-size: larger;
+  color: #02060e;
 }
-.daily-review > h2{
-    padding-left:10px;
-    font-size: larger;
-    color:#0B4619;
-   
+.daily-review > h2 {
+  font-size: larger;
+  color: #0b4619;
 }
 
 .dailyreview-container {
-    height: 92vh;
-    
-    overflow: hidden;
-  
-    background-image: url('../images/study.jpeg');
-  }
+  height: 92.3vh;
+  width: 198.1vh;
+  overflow-x: hidden;
+  background-repeat: no-repeat;
+  background-image: url("../images/studyNEW.jpg");
+}

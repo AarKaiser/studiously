@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import Calendar from 'react-calendar';
-import './Schedule.css';
-import '../../src/index.css';
-import ProtectedRoute from '../components/ProtectedRoute';
-import { QUERY_ME } from '../utils/queries';
-import { useQuery } from '@apollo/client';
+import React, { useState, useEffect } from "react";
+import Calendar from "react-calendar";
+import "./Schedule.css";
+import "../../src/index.css";
+import ProtectedRoute from "../components/ProtectedRoute";
+import { QUERY_ME } from "../utils/queries";
+import { useQuery } from "@apollo/client";
 
 const dataMilliSeconds = (formTimeData) => {
-  const timeData = formTimeData.split(':').map((time) => +time);
+  const timeData = formTimeData.split(":").map((time) => +time);
 
   let milliSeconds =
     new Date().getTime() +
@@ -68,10 +68,12 @@ function Cal(activeStartDate) {
   }, [date]);
 
   return (
-    <ProtectedRoute page={{ name: 'Schedule', url: 'schedule' }}>
+    <ProtectedRoute page={{ name: "Schedule", url: "schedule" }}>
       <div className="schedule-container">
         <div className="calendar-container">
-          <h1>Your Schedule</h1>
+          <h1 className="text-white">
+            <strong>Your Schedule</strong>
+          </h1>
           <br />
           <Calendar
             // onChange={onChange}
@@ -86,7 +88,9 @@ function Cal(activeStartDate) {
             tileContent=""
           />
           <div className="calgoal-container">
-            <h1>Today's Goals</h1>
+            <h1>
+              <strong>Today's Goals</strong>
+            </h1>
             <br />
             <hr></hr>
             {loading && <h2>Loading saved goals...</h2>}
