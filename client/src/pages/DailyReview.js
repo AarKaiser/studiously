@@ -25,7 +25,6 @@ const DailyReview = () => {
         variables: { goalId, completed },
       });
       setUserData(mutationResponse.data.setCompletedGoal);
-      console.log(mutationResponse.data.setCompletedGoal);
     } catch (err) {
       console.log(err);
     }

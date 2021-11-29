@@ -12,6 +12,7 @@ import { QUERY_ME } from '../utils/queries';
 
 import ProtectedRoute from '../components/ProtectedRoute';
 import { Link } from 'react-router-dom';
+import isSameDay from '../utils/is-same-day';
 
 function Goals(props) {
   // set initial form state
@@ -21,13 +22,11 @@ function Goals(props) {
     timer: '',
   });
   const { userError, loading, data } = useQuery(QUERY_ME);
-  const [userData, setUserData] = useState();
+  const [goalsToday, setGoalsToday] = useState([]);
   const [saveGoal, { error: saveGoalError }] = useMutation(SAVE_GOAL);
   const [removeGoal, { error: removeGoalError }] = useMutation(REMOVE_GOAL);
   const [showAlert, setShowAlert] = useState(false);
   const [error, setError] = useState('');
-
-  // console.log(userData);
 
   // Show alert effect
   useEffect(() => {
@@ -40,9 +39,14 @@ function Goals(props) {
 
   useEffect(() => {
     if (!loading && data.me) {
-      setUserData(data.me);
+      const todaysGoal = data.me.savedGoals.filter((goal) => {
+        const today = new Date();
+        const goalDate = new Date(goal.dateCreated);
+        return isSameDay(today, goalDate);
+      });
+      setGoalsToday(todaysGoal);
     }
-  }, [loading]);
+  }, [loading, data]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -86,7 +90,11 @@ function Goals(props) {
         },
       });
       setUserFormData({ name: '', description: '', timer: '' });
-      setUserData(mutationResponse.data.saveGoal);
+      setGoalsToday(
+        mutationResponse.data.saveGoal.savedGoals.filter((goal) => {
+          return isSameDay(new Date(), new Date(goal.dateCreated));
+        })
+      );
       setShowAlert(false);
       setError('');
     } catch (err) {
@@ -100,7 +108,11 @@ function Goals(props) {
       const mutationResponse = await removeGoal({
         variables: { goalId },
       });
-      setUserData(mutationResponse.data.removeGoal);
+      setGoalsToday(
+        mutationResponse.data.saveGoal.removeGoal.filter((goal) => {
+          return isSameDay(new Date(), new Date(goal.dateCreated));
+        })
+      );
     } catch (err) {
       console.log(err);
     }
@@ -197,15 +209,12 @@ function Goals(props) {
         <h2>Your Goals</h2>
         {loading && <h2>Loading goals..</h2>}
         {!loading && userError && <h2>Something went wrong!</h2>}
-        {userData &&
-          userData.savedGoals &&
-          userData.savedGoals.length === 0 && (
-            <h1>You haven't set any goal yet.</h1>
-          )}
-        {userData &&
-          userData.savedGoals &&
-          userData.savedGoals.length !== 0 &&
-          userData.savedGoals.map((goal) => {
+        {goalsToday && goalsToday.length === 0 && (
+          <h1>You haven't set any goal yet.</h1>
+        )}
+        {goalsToday &&
+          goalsToday.length !== 0 &&
+          goalsToday.map((goal) => {
             return (
               <div className="card saved-goals" key={goal._id}>
                 <li className="list-group-item">

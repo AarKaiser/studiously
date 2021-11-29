@@ -8,8 +8,10 @@ import TimerButtons from '../components/Timer/TimerButtons.js';
 import ProtectedRoute from '../components/ProtectedRoute';
 import { QUERY_ME } from '../utils/queries';
 import { useQuery } from '@apollo/client';
+import { Redirect } from 'react-router-dom';
+import isSameDay from '../utils/is-same-day';
 
-const dataMilliSeconds = (formTimeData) => {
+const dateMilliSeconds = (formTimeData) => {
   const timeData = formTimeData.split(':').map((time) => +time);
 
   let milliSeconds =
@@ -22,7 +24,7 @@ const dataMilliSeconds = (formTimeData) => {
 };
 
 const Timer = () => {
-  const [userGoals, setUserGoals] = useState({});
+  const [durations, setDurations] = useState([]);
 
   const { loading, error, data } = useQuery(QUERY_ME);
 
@@ -31,29 +33,36 @@ const Timer = () => {
   const [timerMinutes, setTimerMinutes] = useState('00');
   const [timerSeconds, setTimerSeconds] = useState('00');
 
-  const [counting, setCounting] = useState(true);
+  const [paused, setPaused] = useState(false);
   const [pausedTimerData, setPausedTimerData] = useState(null);
-
-  // start counter
-  const startCountDown = () => {
-    setPausedTimerData(null);
-    setCounting(true);
-  };
-
-  // pause counter
-  const pauseCountDown = () => {
-    setPausedTimerData(`${timerHours}:${timerMinutes}:${timerSeconds}`);
-    setCounting(false);
-  };
-
   let interval = useRef();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [allCompleted, setAllCompleted] = useState(false);
+  // const [dummyTime, setDummyTime] = useState(['00:00:15', '00:00:30']);
+
+  // Set users goals
+  useEffect(() => {
+    if (data && data.me) {
+      const today = new Date();
+      const filterdGoals = data.me.savedGoals.filter((goal) => {
+        return isSameDay(today, new Date(goal.dateCreated));
+      });
+      const dtn = filterdGoals.map((goal) => goal.duration);
+      setDurations(dtn);
+    }
+  }, [data]);
 
   const startTimer = () => {
+    clearInterval(interval);
+
     const countDownDate = new Date(
-      dataMilliSeconds(pausedTimerData ? pausedTimerData : '1:00:40')
+      dateMilliSeconds(
+        pausedTimerData ? pausedTimerData : durations[currentIndex]
+      )
     ).getTime();
 
-    interval = setInterval(() => {
+    interval.current = setInterval(() => {
       const now = new Date().getTime();
       const distance = countDownDate - now;
 
@@ -64,8 +73,13 @@ const Timer = () => {
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       if (distance < 0) {
-        // stop the timer or move to the next goal
+        // stop the timer and on move to the next goal if any
         clearInterval(interval.current);
+        if (durations[currentIndex + 1]) {
+          setCurrentIndex((prevIndex) => prevIndex + 1);
+        } else {
+          setAllCompleted(true);
+        }
       } else {
         setTimerHours(hours);
         setTimerMinutes(minutes);
@@ -74,15 +88,53 @@ const Timer = () => {
     }, 1000);
   };
 
+  // start counter
+  const startCountDown = () => {
+    const pausedTime = pausedTimerData.split(':').map((time) => +time);
+    // set paused times
+    setTimerHours(pausedTime[0]);
+    setTimerMinutes(pausedTime[1]);
+    setTimerSeconds(pausedTime[2]);
+
+    setPausedTimerData(null);
+    setPaused(false);
+    startTimer();
+  };
+
+  // pause counter
+  const pauseCountDown = () => {
+    console.log(`${timerHours}:${timerMinutes}:${timerSeconds}`);
+    clearInterval(interval.current);
+    setPausedTimerData(`${timerHours}:${timerMinutes}:${timerSeconds}`);
+    setPaused(true);
+  };
+
+  // Move to next goal
+  const moveToNextGoal = () => {
+    clearInterval(interval);
+    if (durations[currentIndex + 1]) {
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    }
+  };
+
+  // Reset goal
+  const resetGoalTimer = () => {
+    clearInterval(interval);
+    startTimer();
+  };
+
   useEffect(() => {
-    if (counting) {
+    if (durations.length !== 0) {
       startTimer();
     }
-
     return () => {
       clearInterval(interval);
     };
-  }, [counting]);
+  }, [currentIndex, durations]);
+
+  if (allCompleted) {
+    return <Redirect to="/dailyreview" />;
+  }
 
   return (
     <ProtectedRoute page={{ name: 'Timer', url: 'timer' }}>
@@ -102,7 +154,9 @@ const Timer = () => {
       <TimerButtons
         startCountDown={startCountDown}
         pauseCountDown={pauseCountDown}
-        counting={counting}
+        moveToNextGoal={moveToNextGoal}
+        resetGoalTimer={resetGoalTimer}
+        paused={paused}
       />
     </ProtectedRoute>
   );
