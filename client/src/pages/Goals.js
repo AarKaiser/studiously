@@ -1,32 +1,32 @@
-import './Goals.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import { Form, Button, Alert } from 'react-bootstrap';
+import "./Goals.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import { Form, Button, Alert } from "react-bootstrap";
 
-import React, { useState, useEffect } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
-import Auth from '../utils/auth';
-import { SAVE_GOAL, REMOVE_GOAL } from '../utils/mutations';
-import { QUERY_ME } from '../utils/queries';
+import React, { useState, useEffect } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import Auth from "../utils/auth";
+import { SAVE_GOAL, REMOVE_GOAL } from "../utils/mutations";
+import { QUERY_ME } from "../utils/queries";
 // import { REMOVE_GOAL } from '../utils/mutations';
 
-import ProtectedRoute from '../components/ProtectedRoute';
-import { Link } from 'react-router-dom';
-import isSameDay from '../utils/is-same-day';
+import ProtectedRoute from "../components/ProtectedRoute";
+import { Link } from "react-router-dom";
+import isSameDay from "../utils/is-same-day";
 
 function Goals(props) {
   // set initial form state
   const [userFormData, setUserFormData] = useState({
-    name: '',
-    description: '',
-    timer: '',
+    name: "",
+    description: "",
+    timer: "",
   });
   const { userError, loading, data } = useQuery(QUERY_ME);
   const [goalsToday, setGoalsToday] = useState([]);
   const [saveGoal, { error: saveGoalError }] = useMutation(SAVE_GOAL);
   const [removeGoal, { error: removeGoalError }] = useMutation(REMOVE_GOAL);
   const [showAlert, setShowAlert] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   // Show alert effect
   useEffect(() => {
@@ -59,22 +59,22 @@ function Goals(props) {
       description.trim().length === 0 ||
       timer.trim().length === 0
     ) {
-      setError('All fields are required!');
+      setError("All fields are required!");
       setShowAlert(true);
       return;
     }
 
-    const duration = timer.split(':');
+    const duration = timer.split(":");
 
     // form validation
     if (duration.length !== 3) {
-      setError('Provide the correct format on the goal duration e.g 02:30:00');
+      setError("Provide the correct format on the goal duration e.g 02:30:00");
       setShowAlert(true);
       return;
     }
 
     if (duration.find((item) => Number(item) === NaN)) {
-      setError('Provide the current format with only numbers');
+      setError("Provide the current format with only numbers");
       setShowAlert(true);
       return;
     }
@@ -89,14 +89,14 @@ function Goals(props) {
           },
         },
       });
-      setUserFormData({ name: '', description: '', timer: '' });
+      setUserFormData({ name: "", description: "", timer: "" });
       setGoalsToday(
         mutationResponse.data.saveGoal.savedGoals.filter((goal) => {
           return isSameDay(new Date(), new Date(goal.dateCreated));
         })
       );
       setShowAlert(false);
-      setError('');
+      setError("");
     } catch (err) {
       console.log(err);
     }
@@ -127,7 +127,7 @@ function Goals(props) {
   };
 
   return (
-    <ProtectedRoute page={{ name: 'Goals', url: 'goals' }}>
+    <ProtectedRoute page={{ name: "Goals", url: "goals" }}>
       {/* This is needed for the validation functionality above */}
       <Form noValidate onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
@@ -141,14 +141,17 @@ function Goals(props) {
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor="name">Goal Name</Form.Label>
+          <Form.Label className="goals-title mt-24" htmlFor="name">
+            Your Goal
+          </Form.Label>
           <Form.Control
             type="text"
-            placeholder="Your goal"
+            placeholder="eg: Be ready for math test."
             name="name"
             onChange={handleInputChange}
             value={userFormData.name}
             required
+            className="w-96"
           />
           <Form.Control.Feedback type="invalid">
             Please give you goal a name!
@@ -156,14 +159,17 @@ function Goals(props) {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="email">Description</Form.Label>
+          <Form.Label className="goals-title" htmlFor="email">
+            Description
+          </Form.Label>
           <Form.Control
             type="description"
-            placeholder="Your goal description"
+            placeholder="eg: Study modules 1 and 2."
             name="description"
             onChange={handleInputChange}
             value={userFormData.description}
             required
+            className="w-96 h-32"
           />
           <Form.Control.Feedback type="invalid">
             Please give you goal a description!
@@ -171,16 +177,17 @@ function Goals(props) {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="timer">
-            How long do you want to spend on this goal?
+          <Form.Label className="goals-title" htmlFor="timer">
+            Goal Duration
           </Form.Label>
           <Form.Control
             type="timer"
-            placeholder="Timer"
+            placeholder="eg: 2:30:00 (HH:MM:SS)."
             name="timer"
             onChange={handleInputChange}
             value={userFormData.timer}
             required
+            className="w-96"
           />
           <Form.Control.Feedback type="invalid">
             Please give you goal a description!
@@ -191,22 +198,22 @@ function Goals(props) {
           // disabled={!(userFormData.name && userFormData.description)}
           type="submit"
           variant="success"
+          className="goals-submit"
         >
           Submit
         </Button>
 
         <div className="flex justify-center space-x-10">
-          <Link
-            to="/timer"
-            className="bg-gray-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded bottom-1 justify-start"
-          >
+          <Link to="/timer" className="goals-srt-achieve justify-center">
             Start Achieving!
           </Link>
         </div>
       </Form>
 
       <div>
-        <h2>Your Goals</h2>
+        <h2>
+          <strong>Your Goals</strong>
+        </h2>
         {loading && <h2>Loading goals..</h2>}
         {!loading && userError && <h2>Something went wrong!</h2>}
         {goalsToday && goalsToday.length === 0 && (
@@ -224,8 +231,8 @@ function Goals(props) {
                       onClick={removeGoalHandler.bind(null, goal._id)}
                     >
                       🗑️
-                    </button>{' '}
-                    {goal.name}{' '}
+                    </button>{" "}
+                    {goal.name}{" "}
                   </span>
                   <span>{goal.duration}</span>
                 </li>
