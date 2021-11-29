@@ -41,7 +41,7 @@
 }
 
 .goals-title {
-  @apply text-3xl justify-center;
+  @apply text-3xl flex justify-center font-semibold;
 }
 
 .goals-submit {
@@ -91,9 +91,9 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.layout {
+/* .layout {
   padding: 0 10rem;
-}
+} */
 
 /* AUTH FORM STYLING */
 
