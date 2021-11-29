@@ -37,6 +37,7 @@ function Questions(props) {
           return (
             <Fragment key={goal._id}>
               <Container>
+              <div className="study-txt">
                 <h2>{goal.name} ?</h2>
                 {goal.completed !== true && goal.completed !== false && (
                   <>
@@ -95,6 +96,8 @@ function Questions(props) {
                 )}
                 {/* {iscompletedGoal(goal._id)}
                 {isUncompletedGoal(goal._id)} */}
+              
+              </div>
               </Container>
               <br />
             </Fragment>
