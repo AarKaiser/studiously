@@ -5,7 +5,7 @@ import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { SET_COMPLETED_GOAL } from '../utils/mutations';
-
+import './DailyReview.css';
 import ReviewButtons from '../components/Daily Review/ReviewButtons';
 import Questions from '../components/Daily Review/Questions';
 // import { GET_GOAL } from '../utils/mutations'
@@ -36,12 +36,12 @@ const DailyReview = () => {
 
   return (
     <ProtectedRoute page={{ name: 'Daily Review', url: 'dailyreview' }}>
+      <div className="dailyreview-container">
       <Container className="daily-review">
         <h1>DAILY REVIEW</h1>
         <br />
-        <h2>Congratulations on completing a productive day!🎉</h2>
-        <br />
-        <h2>Were you able to achieve your goals today?</h2>
+        <h2>Congratulations on completing a productive day!🎉Were you able to achieve your goals today?
+      </h2>
       </Container>
       <br />
 
@@ -56,6 +56,7 @@ const DailyReview = () => {
       <Container>
         <ReviewButtons />
       </Container>
+      </div>
     </ProtectedRoute>
   );
 };
