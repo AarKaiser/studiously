@@ -10,7 +10,7 @@ h1 {
 }
 
 .schedule-container {
-  height: 92vh;
+  /* height: 92vh; */
   background: var(--cal2);
   /* overflow: hidden; */
   background-image: url('../images/grassblades.jpg');
