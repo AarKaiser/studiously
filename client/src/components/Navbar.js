@@ -27,9 +27,7 @@ const AppNavbar = () => {
               {/* if user is logged in show saved goals and logout */}
               {authCtx.isAuthenticated ? (
                 <>
-                  <Nav.Link as={Link} to="/dashboard" className="nav-link">
-                    Dashboard
-                  </Nav.Link>
+                 
                   <Nav.Link as={Link} to="/goals" className="nav-link">
                     Goals
                   </Nav.Link>
@@ -42,7 +40,9 @@ const AppNavbar = () => {
                   <Nav.Link as={Link} to="/timer">
                     Timer
                   </Nav.Link>
-
+                  <Nav.Link as={Link} to="/dashboard" className="nav-link">
+                    Dashboard
+                  </Nav.Link>
                   <Nav.Link onClick={authCtx.logout}>Logout</Nav.Link>
                 </>
               ) : (
