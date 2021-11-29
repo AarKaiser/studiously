@@ -24,6 +24,7 @@ const dateMilliSeconds = (formTimeData) => {
 };
 
 const Timer = () => {
+  const [userData, setUserData] = useState(null);
   const [durations, setDurations] = useState([]);
 
   const { loading, error, data } = useQuery(QUERY_ME);
@@ -50,6 +51,7 @@ const Timer = () => {
       });
       const dtn = filterdGoals.map((goal) => goal.duration);
       setDurations(dtn);
+      setUserData(data.me);
     }
   }, [data]);
 
@@ -142,7 +144,12 @@ const Timer = () => {
         <h1>Timer</h1>
       </Container>
       <Container>
-        <h2>After Goal 1, you get a 15 mins break.</h2>
+        <h2 style={{ margin: '1rem' }}>
+          <span style={{ fontWeight: 'bold' }}>
+            {userData && userData.savedGoals[currentIndex].name}
+          </span>
+          , you get a 15 mins break.
+        </h2>
       </Container>
 
       <Countdown
