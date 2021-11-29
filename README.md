@@ -38,11 +38,11 @@ This application can be accessed on Heroku [here](https://studiously.herokuapp.c
 
 ## Contributing
 
-[Aar](https://www.github.com/aarkaiser), 
-[Amar](https://github.com/Algex07), 
-[Arshleen](https://github.com/ArshleenKNagpal), 
-[Shamsher](https://github.com/SSinghcode), and
-[Victor](https://github.com/vcapella).
+[Aar K.](https://www.github.com/aarkaiser), 
+[Amar A.](https://github.com/Algex07), 
+[Arshleen N.](https://github.com/ArshleenKNagpal), 
+[Shamsher S.](https://github.com/SSinghcode), and
+[Victor C.](https://github.com/vcapella).
 
 
 ## Licenses
