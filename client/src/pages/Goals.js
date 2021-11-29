@@ -129,116 +129,121 @@ function Goals(props) {
   return (
     <ProtectedRoute page={{ name: "Goals", url: "goals" }}>
       {/* This is needed for the validation functionality above */}
-      <Form noValidate onSubmit={handleFormSubmit}>
-        {/* show alert if server response is bad */}
-        <Alert
-          dismissible
-          onClose={() => setShowAlert(false)}
-          show={showAlert}
-          variant="danger"
-        >
-          {error}
-        </Alert>
+      <div className="bg-img-goals">
+        <Form noValidate onSubmit={handleFormSubmit}>
+          {/* show alert if server response is bad */}
+          <Alert
+            dismissible
+            onClose={() => setShowAlert(false)}
+            show={showAlert}
+            variant="danger"
+          >
+            {error}
+          </Alert>
 
-        <Form.Group>
-          <Form.Label className="goals-title mt-24" htmlFor="name">
-            Your Goal
-          </Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="eg: Be ready for math test."
-            name="name"
-            onChange={handleInputChange}
-            value={userFormData.name}
-            required
-            className="w-96"
-          />
-          <Form.Control.Feedback type="invalid">
-            Please give you goal a name!
-          </Form.Control.Feedback>
-        </Form.Group>
+          <Form.Group>
+            <Form.Label className="goals-title mt-12" htmlFor="name">
+              Your Goal
+            </Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="eg: Be ready for math test."
+              name="name"
+              onChange={handleInputChange}
+              value={userFormData.name}
+              required
+              className="w-96 h-12 flex m-auto"
+            />
+            <Form.Control.Feedback type="invalid">
+              Please give you goal a name!
+            </Form.Control.Feedback>
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label className="goals-title" htmlFor="email">
-            Description
-          </Form.Label>
-          <Form.Control
-            type="description"
-            placeholder="eg: Study modules 1 and 2."
-            name="description"
-            onChange={handleInputChange}
-            value={userFormData.description}
-            required
-            className="w-96 h-32"
-          />
-          <Form.Control.Feedback type="invalid">
-            Please give you goal a description!
-          </Form.Control.Feedback>
-        </Form.Group>
+          <Form.Group>
+            <Form.Label className="goals-title" htmlFor="email">
+              Description
+            </Form.Label>
+            <Form.Control
+              type="description"
+              placeholder="eg: Study modules 1 and 2."
+              name="description"
+              onChange={handleInputChange}
+              value={userFormData.description}
+              required
+              className="w-96 h-32 flex m-auto"
+            />
+            <Form.Control.Feedback type="invalid">
+              Please give you goal a description!
+            </Form.Control.Feedback>
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label className="goals-title" htmlFor="timer">
-            Goal Duration
-          </Form.Label>
-          <Form.Control
-            type="timer"
-            placeholder="eg: 2:30:00 (HH:MM:SS)."
-            name="timer"
-            onChange={handleInputChange}
-            value={userFormData.timer}
-            required
-            className="w-96"
-          />
-          <Form.Control.Feedback type="invalid">
-            Please give you goal a description!
-          </Form.Control.Feedback>
-        </Form.Group>
+          <Form.Group>
+            <Form.Label className="goals-title" htmlFor="timer">
+              Goal Duration
+            </Form.Label>
+            <Form.Control
+              type="timer"
+              placeholder="eg: 2:30:00 (HH:MM:SS)."
+              name="timer"
+              onChange={handleInputChange}
+              value={userFormData.timer}
+              required
+              className="w-96 h-12 flex m-auto"
+            />
+            <Form.Control.Feedback type="invalid">
+              Please give you goal a description!
+            </Form.Control.Feedback>
+          </Form.Group>
 
-        <Button
-          // disabled={!(userFormData.name && userFormData.description)}
-          type="submit"
-          variant="success"
-          className="goals-submit"
-        >
-          Submit
-        </Button>
+          <Button
+            // disabled={!(userFormData.name && userFormData.description)}
+            type="submit"
+            variant="success"
+            className="goals-submit flex m-auto"
+          >
+            Submit
+          </Button>
 
-        <div className="flex justify-center space-x-10">
-          <Link to="/timer" className="goals-srt-achieve justify-center">
-            Start Achieving!
-          </Link>
+          <div className="flex justify-center space-x-10 mt-20 mb-2">
+            <Link to="/timer" className="goals-srt-achieve justify-center">
+              Start Achieving!
+            </Link>
+          </div>
+        </Form>
+
+        <div>
+          <h2>
+            <strong className="flex justify-center">Your Goals</strong>
+          </h2>
+          {loading && <h2>Loading goals..</h2>}
+          {!loading && userError && <h2>Something went wrong!</h2>}
+          {goalsToday && goalsToday.length === 0 && (
+            <h1>You haven't set any goal yet.</h1>
+          )}
+          {goalsToday &&
+            goalsToday.length !== 0 &&
+            goalsToday.map((goal) => {
+              return (
+                <div
+                  className="card saved-goals w-2/5 flex m-auto"
+                  key={goal._id}
+                >
+                  <li className="list-group-item">
+                    <span>
+                      <button
+                        className="delete-goal-btn"
+                        onClick={removeGoalHandler.bind(null, goal._id)}
+                      >
+                        🗑️
+                      </button>{" "}
+                      {goal.name}{" "}
+                    </span>
+                    <span>{goal.duration}</span>
+                  </li>
+                </div>
+              );
+            })}
         </div>
-      </Form>
-
-      <div>
-        <h2>
-          <strong>Your Goals</strong>
-        </h2>
-        {loading && <h2>Loading goals..</h2>}
-        {!loading && userError && <h2>Something went wrong!</h2>}
-        {goalsToday && goalsToday.length === 0 && (
-          <h1>You haven't set any goal yet.</h1>
-        )}
-        {goalsToday &&
-          goalsToday.length !== 0 &&
-          goalsToday.map((goal) => {
-            return (
-              <div className="card saved-goals" key={goal._id}>
-                <li className="list-group-item">
-                  <span>
-                    <button
-                      className="delete-goal-btn"
-                      onClick={removeGoalHandler.bind(null, goal._id)}
-                    >
-                      🗑️
-                    </button>{" "}
-                    {goal.name}{" "}
-                  </span>
-                  <span>{goal.duration}</span>
-                </li>
-              </div>
-            );
-          })}
       </div>
     </ProtectedRoute>
   );

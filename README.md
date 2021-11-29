@@ -67,6 +67,7 @@ Email: appstudiously@gmail.com
 
 Please feel free to contact us with further questions via email, which is our preferred method.
 
+
 ## Screenshot
 
 ![Screenshot](https://raw.githubusercontent.com/AarKaiser/studiously/_%20devassets%20_/main/assets/images/screenshot.png)
