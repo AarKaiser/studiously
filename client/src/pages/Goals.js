@@ -129,7 +129,7 @@ function Goals(props) {
         </Alert>
 
         <Form.Group>
-          <Form.Label className="goals-title mt-40" htmlFor="name">
+          <Form.Label className="goals-title mt-24" htmlFor="name">
             Your Goal
           </Form.Label>
           <Form.Control
@@ -139,6 +139,7 @@ function Goals(props) {
             onChange={handleInputChange}
             value={userFormData.name}
             required
+            className="w-96"
           />
           <Form.Control.Feedback type="invalid">
             Please give you goal a name!
@@ -156,6 +157,7 @@ function Goals(props) {
             onChange={handleInputChange}
             value={userFormData.description}
             required
+            className="w-96 h-32"
           />
           <Form.Control.Feedback type="invalid">
             Please give you goal a description!
@@ -164,7 +166,7 @@ function Goals(props) {
 
         <Form.Group>
           <Form.Label className="goals-title" htmlFor="timer">
-            How long do you want to spend on this goal?
+            Goal Duration
           </Form.Label>
           <Form.Control
             type="timer"
@@ -173,6 +175,7 @@ function Goals(props) {
             onChange={handleInputChange}
             value={userFormData.timer}
             required
+            className="w-96"
           />
           <Form.Control.Feedback type="invalid">
             Please give you goal a description!
@@ -196,14 +199,16 @@ function Goals(props) {
       </Form>
 
       <div>
-        <h2>Your Goals</h2>
+        <h2>
+          <strong>Your Goals</strong>
+        </h2>
         {loading && <h2>Loading goals..</h2>}
         {!loading && userError && <h2>Something went wrong!</h2>}
-        {userData &&
-          userData.savedGoals &&
-          userData.savedGoals.length === 0 && (
-            <h1>You haven't set any goal yet.</h1>
-          )}
+        {userData && userData.savedGoals && userData.savedGoals.length === 0 && (
+          <h1>
+            <strong>You haven't set any goal yet.</strong>
+          </h1>
+        )}
         {userData &&
           userData.savedGoals &&
           userData.savedGoals.length !== 0 &&
