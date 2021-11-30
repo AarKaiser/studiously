@@ -141,14 +141,14 @@ const Timer = () => {
       <Container>
         <h1>Timer</h1>
       </Container>
-      {/* <Container>
+      <Container>
         <h2 style={{ margin: '1rem' }}>
           <span style={{ fontWeight: 'bold' }}>
             {goals && goals[currentIndex].name}
           </span>
-          , you get a 15 mins break.
+         
         </h2>
-      </Container> */}
+      </Container>
 
       <Countdown
         hours={timerHours}
