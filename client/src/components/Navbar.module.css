@@ -3,7 +3,7 @@
   border: none;
   outline: none;
   color: #fff;
-  background-color: #1971c2;
+  background-color: rgb(16, 185, 129);
   text-decoration: none;
   border-radius: 4px;
   margin: 0 4px;
@@ -12,7 +12,7 @@
 }
 
 .btn:hover {
-  background-color: #1864ab;
+  background-color: rgb(4, 120, 87);
   text-decoration: none;
   color: #fff;
 }
