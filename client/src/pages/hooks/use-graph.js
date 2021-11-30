@@ -1,8 +1,8 @@
-import moment from 'moment';
+import moment from "moment";
 
-import { QUERY_ME } from '../../utils/queries';
-import { useQuery } from '@apollo/client';
-import { useState, useEffect } from 'react';
+import { QUERY_ME } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
+import { useState, useEffect } from "react";
 
 moment().format();
 
@@ -10,24 +10,24 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top',
+      position: "top",
     },
     title: {
       display: true,
-      text: 'Chart.js Line Chart',
+      text: "Chart.js Line Chart",
     },
   },
 };
 
-const labels = ['Daily', 'Weekly', 'Monthly', 'All Time'];
+const labels = ["Daily", "Weekly", "Monthly", "All Time"];
 const initialGoal = {
   labels,
   datasets: [
     {
-      label: 'Avg completed goals',
+      label: "Avg completed goals",
       data: [0, 0, 0, 0],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      borderColor: "rgb(255, 99, 132)",
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
     },
   ],
 };
@@ -36,10 +36,10 @@ const initialTime = {
   labels,
   datasets: [
     {
-      label: 'Avg timer per goal (in minutes)',
+      label: "Avg timer per goal (in minutes)",
       data: [0, 0, 0, 0],
-      borderColor: 'rgb(153, 102, 135)',
-      backgroundColor: 'rgba(123, 112, 125, 0.5)',
+      borderColor: "rgb(153, 102, 135)",
+      backgroundColor: "rgba(123, 112, 125, 0.5)",
     },
   ],
 };
@@ -48,10 +48,10 @@ const initialCompleted = {
   labels,
   datasets: [
     {
-      label: 'Avg goals daily',
+      label: "Avg goals daily",
       data: [0, 0, 0, 0],
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      borderColor: "rgb(53, 162, 235)",
+      backgroundColor: "rgba(53, 162, 235, 0.5)",
     },
   ],
 };
@@ -62,7 +62,7 @@ const constructDate = (dateObject, format) => {
   const month = dateObject.getMonth();
   const date = dateObject.getDate();
 
-  if (format === 'DD-MM-YYYY') {
+  if (format === "DD-MM-YYYY") {
     return `${date}-${month + 1}-${year}`;
   }
 
@@ -124,7 +124,7 @@ const useGraph = () => {
       daysDifference = 1;
     }
 
-    const times = filteredGoals.map((goal) => goal.duration.split(':'));
+    const times = filteredGoals.map((goal) => goal.duration.split(":"));
     let newTimes = times.map((time) => {
       const hoursToMilliseconds = +time[0] * (1000 * 3600);
       const minutesToMilliseconds = +time[1] * (1000 * 60);
@@ -170,7 +170,7 @@ const useGraph = () => {
 
       // avg all time completed goals
       const avgAllTimeCompletedGoals = calculateAvgCompletedGoals(
-        filterGoals(goals, new Date('1970-01-01'))
+        filterGoals(goals, new Date("2021-30-10"))
       );
 
       // Calculate average number of goals per day
