@@ -15,13 +15,7 @@ export default function ReviewButtons({
       >
         {!paused ? 'Pause' : 'Resume'}
       </button> 
-      <button
-        onClick={moveToNextGoal}
-        className="content-end bg-green-600 blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded -bottom-1 justify-end"
-        disabled
-      >
-        Next Goal
-      </button>
+
     </div>
   );
 }
