@@ -95,7 +95,7 @@ function Cal(activeStartDate) {
             <hr></hr>
             {loading && <h2>Loading saved goals...</h2>}
             {!loading && userData && userData.me && (
-              <ul>
+              <ul className=" flex justify-center">
                 {filteredGoals.map((goal) => {
                   return <h2 key={goal._id}>{goal.name}</h2>;
                 })}
