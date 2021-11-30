@@ -7,7 +7,7 @@ import { QUERY_ME } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import { Redirect } from 'react-router-dom';
 import isSameDay from '../utils/is-same-day';
-
+import "./Timer.css";
 const dateMilliSeconds = (formTimeData) => {
   const timeData = formTimeData.split(':').map((time) => +time);
 
@@ -137,16 +137,18 @@ const Timer = () => {
 
   return (
     <ProtectedRoute page={{ name: 'Timer', url: 'timer' }}>
+     <div className="layout-timer">
       <Container>
         <h1>Timer</h1>
       </Container>
-      <Container>
+      {/* <Container>
         <h2 style={{ margin: '1rem' }}>
           <span style={{ fontWeight: 'bold' }}>
-            {/* {goals && goals[currentIndex].name} */}
+            {goals && goals[currentIndex].name}
           </span>
+          , you get a 15 mins break.
         </h2>
-      </Container>
+      </Container> */}
 
       <Countdown
         hours={timerHours}
@@ -161,6 +163,7 @@ const Timer = () => {
         resetGoalTimer={resetGoalTimer}
         paused={paused}
       />
+     </div>
     </ProtectedRoute>
   );
 };
