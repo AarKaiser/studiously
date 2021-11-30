@@ -142,10 +142,10 @@ const Timer = () => {
         <h1>Timer</h1>
       </Container>
       <Container>
-        <h2 style={{ margin: '1rem' }}>
-          <span style={{ fontWeight: 'bold' }}>
+        <h2>
+          
             {goals && goals[currentIndex].name}
-          </span>
+         
          
         </h2>
       </Container>

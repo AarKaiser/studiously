@@ -13,3 +13,14 @@
     background-repeat: no-repeat;
     background-image: url("../images/studyNEW.jpg");
    }
+   .layout-timer h2{
+    color:#0B4619;
+    font-weight: bolder;
+    font-size: x-large;
+    
+    
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    
+   }
