@@ -1,0 +1,15 @@
+.layout-timer h1{
+ color:#0B4619;
+ font-weight: bolder;
+ font-size: xx-large;
+ margin-top: 25%;
+ margin-bottom: 10px;
+ margin-right: 0;
+}
+.layout-timer{
+    height: 92.3vh;
+    width: 198.1vh;
+    overflow-x: hidden;
+    background-repeat: no-repeat;
+    background-image: url("../images/studyNEW.jpg");
+   }
