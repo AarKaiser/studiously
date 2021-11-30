@@ -76,4 +76,6 @@ Please feel free to contact us with further questions via email, which is our pr
 
 ## Walkthrough Video
 
+https://user-images.githubusercontent.com/87316518/143975201-299b0265-a553-4d6e-a1ed-d3b6f296eb99.mp4
+
 
